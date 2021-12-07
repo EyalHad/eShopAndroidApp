@@ -2,50 +2,45 @@ package com.example.projectapp
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.example.projectapp.R
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 
 class SignUpActivity : BaseActivity() {
+    private lateinit var auth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+        auth = FirebaseAuth.getInstance()
         var btn : Button = findViewById(R.id.signUp_Button)
         btn.setOnClickListener {
             register()
         }
     }
         private fun register(){
-//        val name:String = findViewById(R.id.signUp_Button).text.toString().trim{it <= ' '}//trim is used to 'clean' empty characters
-//        val email:String = signUp_Email.text.toString().trim{it <= ' '}
-//        val password:String = signUp_Pass.toString()
-//        if(validateForm(name, password, email)){
-//            showErrorSnackBar(resources.getString(R.string.wait))
-//            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener { task ->
-//                    dismissDialog()
-//                    if (task.isSuccessful) {
-//                        val firebaseUser: FirebaseUser = task.result!!.user!!
-//                        val registeredEmail = firebaseUser.email!!
-//                        Toast.makeText(
-//                            this, "$name you have successfully created with " +
-//                                    "email $registeredEmail!", Toast.LENGTH_LONG
-//                        ).show()
-//                        FirebaseAuth.getInstance().signOut()
-//                        finish()
-//                    } else {
-//                        Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
-//                    }
-//                }
-//        }
+            var password:String = findViewById<EditText>(R.id.signUp_Pass).text.toString()
+            var email:String = findViewById<EditText>(R.id.signUp_Email).text.toString()
+            //create a user with given credentials
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener{task: Task<AuthResult> ->
+                    //if creation was successful
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Done!", Toast.LENGTH_LONG).show()
+                    }
+                    //if creation was failed
+                    else{
+                        Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+                    }
+                }
     }
 
-    private fun validateForm(name:String, password:String, email:String ) : Boolean{
+    private fun validateForm(password:String, email:String ) : Boolean{
         return when{
-            TextUtils.isEmpty(name)->{
-                showErrorSnackBar("Please enter a name")
-                false
-            }
             TextUtils.isEmpty(password)->{
                 showErrorSnackBar("Please enter a password")
                 false
