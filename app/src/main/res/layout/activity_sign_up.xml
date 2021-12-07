@@ -6,37 +6,29 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="60dp"
     android:layout_marginRight="60dp"
-    tools:context="com.eShop.activities.SignInActivity"
+
     android:id="@+id/signUp">
 
-    <EditText
-        android:id="@+id/signUp_Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/name_req"
-        android:textColor="@color/light_gray"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="195dp"></EditText>
-
-    <EditText
-        android:id="@+id/signUp_Pass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/pass_req"
-        android:textColor="@color/light_gray"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_Name"
-        tools:layout_editor_absoluteX="131dp" />
 
     <EditText
         android:id="@+id/signUp_Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:inputType="textEmailAddress"
         android:text="@string/mail_req"
         android:textColor="@color/light_gray"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_Pass"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <EditText
+        android:id="@+id/signUp_Pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginTop="15dp"
+        android:text="@string/pass_req"
+        android:textColor="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_Email"
         tools:layout_editor_absoluteX="0dp" />
 
     <!--Optional: add a card for pretty display -->
@@ -64,6 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"></Button>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
