@@ -4,11 +4,10 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.projectapp.R
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+
 
 
 class SignUpActivity : BaseActivity() {
@@ -16,6 +15,7 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
         auth = FirebaseAuth.getInstance()
         var btn : Button = findViewById(R.id.signUp_Button)
         btn.setOnClickListener {
@@ -37,21 +37,5 @@ class SignUpActivity : BaseActivity() {
                         Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
                     }
                 }
-    }
-
-    private fun validateForm(password:String, email:String ) : Boolean{
-        return when{
-            TextUtils.isEmpty(password)->{
-                showErrorSnackBar("Please enter a password")
-                false
-            }
-            TextUtils.isEmpty(email)->{
-                showErrorSnackBar("Please enter an email address")
-                false
-            }
-            else ->{
-                true
-            }
-        }
     }
 }
