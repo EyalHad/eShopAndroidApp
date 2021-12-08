@@ -1,4 +1,4 @@
-package com.example.projectapp
+package com.example.projectapp.activities
 
 import android.app.Dialog
 import android.os.Build
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.EditText
 import androidx.core.content.ContextCompat
 import com.example.projectapp.R
 import com.google.android.material.snackbar.Snackbar
@@ -71,22 +72,6 @@ open class BaseActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
-        }
-    }
-
-     fun validateForm(email:String, password:String) : Boolean{
-        return when{
-            TextUtils.isEmpty(password)->{
-                showErrorSnackBar("Please enter a password")
-                false
-            }
-            TextUtils.isEmpty(email)->{
-                showErrorSnackBar("Please enter an email address")
-                false
-            }
-            else ->{
-                true
-            }
         }
     }
 }

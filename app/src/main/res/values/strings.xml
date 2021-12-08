@@ -2,7 +2,7 @@
     <string name="app_name">eShop</string>
     <string name="name_req">User name</string>
     <string name="pass_req">Password</string>
-    <string name="mail_req">Mail</string>
+    <string name="mail_req">Email</string>
     <string name="title_activity_basic">BasicActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
