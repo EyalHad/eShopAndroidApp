@@ -43,12 +43,6 @@ open class BaseActivity : AppCompatActivity() {
         progressDialog.dismiss()
     }
 
-    /**
-     * Return current user Id
-     */
-//    fun getCurrentUserId() : String{
-////        return FirebaseAuth.getInstance().currentUser!!.uid
-//    }
 
     /**
      * Print general error in a snackBar.
