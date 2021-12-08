@@ -15,13 +15,13 @@
     android:id="@+id/splash">
 
     <TextView
+        android:textSize="72sp"
         android:id="@+id/tv_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@android:color/white"
-
         android:textStyle="bold" />
 
 </LinearLayout>
