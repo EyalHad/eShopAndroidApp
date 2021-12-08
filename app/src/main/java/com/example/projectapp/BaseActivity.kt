@@ -1,8 +1,12 @@
 package com.example.projectapp
 
 import android.app.Dialog
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import com.example.projectapp.R
 import com.google.android.material.snackbar.Snackbar
@@ -27,7 +31,7 @@ open class BaseActivity : AppCompatActivity() {
     fun showProgressDialog(text:String){
 //        progressDialog = Dialog(this)
 //        progressDialog.setContentView(R.layout.dialog_progress)
-//        progressDialog.progressText.text = text
+//        progressDialog. = text
 //        progressDialog.show()
     }
 
@@ -53,5 +57,36 @@ open class BaseActivity : AppCompatActivity() {
         val snackBarView = snackBar.view
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_error_color))
         snackBar.show()
+    }
+
+    /**
+     * This is used to hide the status bar and make the splash screen as a full screen activity.
+     */
+    fun fullScreen(){
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+    }
+
+     fun validateForm(email:String, password:String) : Boolean{
+        return when{
+            TextUtils.isEmpty(password)->{
+                showErrorSnackBar("Please enter a password")
+                false
+            }
+            TextUtils.isEmpty(email)->{
+                showErrorSnackBar("Please enter an email address")
+                false
+            }
+            else ->{
+                true
+            }
+        }
     }
 }
