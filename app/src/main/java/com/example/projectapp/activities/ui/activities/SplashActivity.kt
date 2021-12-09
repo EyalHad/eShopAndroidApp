@@ -1,4 +1,4 @@
-package com.example.projectapp.activities
+package com.example.projectapp.activities.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity() {
 
         //This is used in order to move to the next activity, after fixed time
         //START
-        Handler().postDelayed({startActivity(Intent(this, IntroActivity::class.java))
+        Handler().postDelayed({startActivity(Intent(this, DashboardActivity::class.java))
                               finish()}, //User won't be able to return to splash screen
             2500)
     }

@@ -1,4 +1,4 @@
-package com.example.projectapp.activities
+package com.example.projectapp.activities.ui.activities
 
 import android.content.Intent
 import android.os.Bundle

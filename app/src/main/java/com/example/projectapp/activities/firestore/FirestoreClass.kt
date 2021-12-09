@@ -1,6 +1,6 @@
 package com.example.projectapp.activities.firestore
 
-import com.example.projectapp.activities.SignUpActivity
+import com.example.projectapp.activities.ui.activities.SignUpActivity
 import com.example.projectapp.activities.models.User
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions

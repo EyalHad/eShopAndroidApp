@@ -1,4 +1,4 @@
-package com.example.projectapp.activities
+package com.example.projectapp.activities.ui.activities
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -39,7 +39,7 @@ class SignInActivity : BaseActivity() {
                             baseContext, "Authentication succeed!.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, DashboardActivity::class.java))
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.d(TAG, "signInWithEmail:fail")

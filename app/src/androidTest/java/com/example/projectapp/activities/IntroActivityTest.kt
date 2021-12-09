@@ -8,6 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.projectapp.R
+import com.example.projectapp.activities.ui.activities.IntroActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

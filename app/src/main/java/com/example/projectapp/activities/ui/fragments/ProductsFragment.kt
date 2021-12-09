@@ -1,4 +1,4 @@
-package com.example.projectapp.activities.ui.notifications
+package com.example.projectapp.activities.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.projectapp.R
-import com.example.projectapp.databinding.FragmentNotificationsBinding
+import com.example.projectapp.activities.ui.products.ProdyctsViewModel
+import com.example.projectapp.databinding.FragmentProductsBinding
 
 
-class NotificationsFragment : Fragment() {
+class ProductsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var prodyctsViewModel: ProdyctsViewModel
+    private var _binding: FragmentProductsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,14 +26,14 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        prodyctsViewModel =
+            ViewModelProvider(this).get(ProdyctsViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textDashboard
+        prodyctsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

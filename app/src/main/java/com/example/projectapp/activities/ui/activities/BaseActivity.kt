@@ -1,13 +1,15 @@
-package com.example.projectapp.activities
+package com.example.projectapp.activities.ui.activities
 
 import android.app.Dialog
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.TextUtils
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.projectapp.R
 import com.google.android.material.snackbar.Snackbar
@@ -18,7 +20,7 @@ import com.google.android.material.snackbar.Snackbar
  * This class will inherit to all other activities, giving general used functions.
  */
 open class BaseActivity : AppCompatActivity() {
-
+    private var doubleBackToExit = false
     private lateinit var progressDialog : Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,5 +69,19 @@ open class BaseActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
+    }
+
+    /**
+     * Exit screen only on 'back' double clicked.
+     */
+    fun doubleBackToExit(){
+        if(doubleBackToExit){
+            super.onBackPressed()
+            return
+        }
+        doubleBackToExit = true
+        Toast.makeText(this, R.string.double_back_to_exit, Toast.LENGTH_SHORT).show()
+        @Suppress
+        Handler().postDelayed({doubleBackToExit = false}, 2000)
     }
 }
