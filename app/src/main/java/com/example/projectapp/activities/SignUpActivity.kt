@@ -45,8 +45,7 @@ class SignUpActivity : BaseActivity() {
                     FirestoreClass().registerUser(this, user )
                 }
                 //if creation was failed
-                else {
-                    Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+                else {                    Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
                 }
             }
     }

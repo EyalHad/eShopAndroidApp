@@ -4,10 +4,8 @@ import android.app.Dialog
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.EditText
 import androidx.core.content.ContextCompat
 import com.example.projectapp.R
 import com.google.android.material.snackbar.Snackbar
@@ -15,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 //import kotlinx.android.synthetic.main.dialog_progress.*
 
 /**
- * This class will inherit to all other activities, giving general used functions.
+ * This class will inherit to all other com.example.projectapp.activities, giving general used functions.
  */
 open class BaseActivity : AppCompatActivity() {
 

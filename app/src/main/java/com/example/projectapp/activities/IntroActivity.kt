@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.projectapp.R
 
-
 class IntroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

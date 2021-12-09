@@ -4,16 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eShop.activities.MainActivity"
+    tools:context="com.example.projectapp.activities.MainActivity"
     android:id="@+id/main">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/intro_mainText"
+        android:layout_width="256dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/intro_main_text"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <Button
+        android:id="@+id/intro_signInButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/white_shape_button_rounded"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:text="Add Product"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"></Button>
+
+    <Button
+        android:id="@+id/intro_signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:padding="5dp"
+        android:background="@drawable/shape_button_rounded"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:text="Sign Up"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/intro_signInButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></Button>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

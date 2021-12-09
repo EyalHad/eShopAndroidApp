@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:inputType="textEmailAddress"
-        android:hint="First name"
+        android:hint="id"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-16dp" />
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="textEmailAddress"
-        android:hint="Last name"
+        android:hint="name"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@+id/signUp_first_name"
         tools:layout_editor_absoluteX="0dp" />
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="@string/mail_req"
+        android:hint="price"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@+id/signUp_last_name"
         android:layout_marginTop="30dp"
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="@string/pass_req"
+        android:hint="image"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@+id/signUp_email"
         android:layout_marginTop="30dp"
@@ -57,16 +57,7 @@
 
 
 
-    <EditText
-        android:id="@+id/signUp_pass_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="@string/pass_req"
-        android:textColor="@color/light_gray"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_pass"
-        android:layout_marginTop="30dp"
-        tools:layout_editor_absoluteX="0dp" />
+
 
     <Button
         android:id="@+id/signUp_Button"
@@ -78,7 +69,7 @@
         android:background="@drawable/shape_button_rounded"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:hint="Sign Up"
+        android:hint="Add! "
         android:textSize="25sp"
         android:textStyle="bold"
         android:padding="5dp"
