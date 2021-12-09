@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity() {
 
         //This is used in order to move to the next activity, after fixed time
         //START
-        Handler().postDelayed({startActivity(Intent(this, DashboardActivity::class.java))
+        Handler().postDelayed({startActivity(Intent(this, IntroActivity::class.java))
                               finish()}, //User won't be able to return to splash screen
             2500)
     }
