@@ -10,12 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectApp">
         <activity
+            android:name=".activities.ui.activities.AddProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ui.activities.DashboardActivity"
             android:exported="false"
             android:label="@string/app_name" />
         <activity
             android:name=".activities.ui.activities.MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity android:name=".activities.ui.activities.IntroActivity" />
         <activity
             android:name=".activities.ui.activities.SignUpActivity"
