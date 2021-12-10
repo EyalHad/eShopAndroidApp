@@ -19,7 +19,7 @@ class StorageActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityStorageBinding
     lateinit var imageUri : Uri
-
+//THIS IS A TEST
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
