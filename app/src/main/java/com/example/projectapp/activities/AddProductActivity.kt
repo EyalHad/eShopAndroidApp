@@ -1,9 +1,11 @@
 package com.example.projectapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.example.projectapp.R
+import com.example.projectapp.StorageActivity
 import com.example.projectapp.activities.firestore.FirestoreClass
 import com.example.projectapp.activities.models.Product
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,8 @@ class AddProductActivity : BaseActivity() {
             FirestoreClass().AddProduct(this, product )
 
         }
+        var imageBtn: Button = findViewById(R.id.uploadImageBtn)
+        imageBtn.setOnClickListener { startActivity(Intent(this,StorageActivity::class.java)) }
 
     }
 }

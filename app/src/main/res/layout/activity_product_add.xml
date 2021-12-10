@@ -2,20 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signUp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="60dp"
     android:layout_marginRight="60dp"
 
-    android:id="@+id/signUp">
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/signUp_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:inputType="textEmailAddress"
         android:hint="id"
+        android:inputType="textEmailAddress"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-16dp" />
@@ -26,8 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:inputType="textEmailAddress"
         android:hint="name"
+        android:inputType="textEmailAddress"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@+id/signUp_first_name"
         tools:layout_editor_absoluteX="0dp" />
@@ -36,28 +37,44 @@
         android:id="@+id/signUp_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:layout_marginTop="30dp"
         android:hint="price"
+        android:inputType="textEmailAddress"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@+id/signUp_last_name"
-        android:layout_marginTop="30dp"
         tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/signUp_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:layout_marginTop="30dp"
         android:hint="image"
+        android:inputType="textPassword"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@+id/signUp_email"
-        android:layout_marginTop="30dp"
         tools:layout_editor_absoluteX="0dp" />
 
 
-
-
-
+    <Button
+        android:id="@+id/uploadImageBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="330dp"
+        android:background="@drawable/shape_button_rounded"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:text="Image Uploading"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/signUp_Button"
@@ -68,15 +85,15 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/shape_button_rounded"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
         android:hint="Add! "
+        android:orientation="vertical"
+        android:padding="5dp"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"></Button>
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
