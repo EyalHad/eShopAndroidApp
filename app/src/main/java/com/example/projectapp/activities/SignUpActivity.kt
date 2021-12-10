@@ -1,5 +1,6 @@
 package com.example.projectapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
@@ -23,17 +24,20 @@ class SignUpActivity : BaseActivity() {
         auth = FirebaseAuth.getInstance()
         var btn: Button = findViewById(R.id.signUp_Button)
         btn.setOnClickListener {
-            var firstName: String = findViewById<EditText>(R.id.signUp_first_name).text.toString().trim()
-            var lastName: String = findViewById<EditText>(R.id.signUp_last_name).text.toString().trim()
+            var firstName: String =
+                findViewById<EditText>(R.id.signUp_first_name).text.toString().trim()
+            var lastName: String =
+                findViewById<EditText>(R.id.signUp_last_name).text.toString().trim()
             var email: String = findViewById<EditText>(R.id.signUp_email).text.toString().trim()
             var password: String = findViewById<EditText>(R.id.signUp_pass).text.toString()
-            var confirmedPassword: String = findViewById<EditText>(R.id.signUp_pass_confirm).text.toString()
+            var confirmedPassword: String =
+                findViewById<EditText>(R.id.signUp_pass_confirm).text.toString()
             if (validateForm(firstName, lastName, email, password, confirmedPassword))
                 register(firstName, lastName, email, password)
         }
     }
 
-    private fun register(firstName:String, lastName:String, email:String, password: String) {
+    private fun register(firstName: String, lastName: String, email: String, password: String) {
         //create a user with given credentials
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task: Task<AuthResult> ->
@@ -41,16 +45,24 @@ class SignUpActivity : BaseActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Done!", Toast.LENGTH_LONG).show()
                     val firebaseUser: FirebaseUser = task.result!!.user!! //firebase user instance
-                    val user = User(firebaseUser.uid, firstName, lastName, email )
-                    FirestoreClass().registerUser(this, user )
+                    val user = User(firebaseUser.uid, firstName, lastName, email)
+                    FirestoreClass().registerUser(this, user)
+                    startActivity(Intent(this,IntroActivity::class.java))
                 }
                 //if creation was failed
-                else {                    Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+                else {
+                    Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
                 }
             }
     }
 
-    private fun validateForm(firstName:String, lastName:String, email:String, password:String, passwordConfirm:String ): Boolean {
+    private fun validateForm(
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String,
+        passwordConfirm: String
+    ): Boolean {
         return when {
             TextUtils.isEmpty(firstName) -> {
                 showErrorSnackBar("Please enter first name")
@@ -68,7 +80,7 @@ class SignUpActivity : BaseActivity() {
                 showErrorSnackBar("Please enter a password")
                 false
             }
-            !TextUtils.equals(password,passwordConfirm ) ->{
+            !TextUtils.equals(password, passwordConfirm) -> {
                 showErrorSnackBar("Passwords didn't match!")
                 false
             }
