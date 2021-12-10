@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_splash_background"
     android:gravity="center"
-    tools:context="com.example.projectapp.activities.SplashActivity"
+    tools:context="com.example.projectapp.ui.activities.SplashActivity"
     android:id="@+id/splash">
 
     <TextView

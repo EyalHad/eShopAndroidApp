@@ -1,4 +1,4 @@
-package com.example.projectapp
+package com.example.projectapp.ui.activities
 
 import android.app.ProgressDialog
 import android.content.Intent

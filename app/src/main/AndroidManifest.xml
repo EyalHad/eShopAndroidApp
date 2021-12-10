@@ -10,24 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectApp">
         <activity
-            android:name=".StorageActivity"
+            android:name=".ui.activities.StorageActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.DashboardActivity"
+            android:name=".ui.activities.DashboardActivity"
             android:exported="false"
             android:label="@string/app_name" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true" />
-        <activity android:name=".activities.IntroActivity" />
+        <activity android:name=".ui.activities.IntroActivity" />
         <activity
-            android:name=".activities.SignUpActivity"
+            android:name=".ui.activities.SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".activities.AddProductActivity"
+            android:name=".ui.activities.AddProductActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,10 +36,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.BaseActivity"
+            android:name=".ui.activities.BaseActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".activities.SignInActivity"
+            android:name=".ui.activities.SignInActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 

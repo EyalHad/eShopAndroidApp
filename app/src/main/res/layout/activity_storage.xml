@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
-    tools:context=".StorageActivity">
+    tools:context=".ui.activities.StorageActivity">
 
     <TextView
         android:layout_width="match_parent"
