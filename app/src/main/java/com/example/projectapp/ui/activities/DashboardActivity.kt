@@ -10,8 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.projectapp.R
 import com.example.projectapp.databinding.ActivityDashboardBinding
 
-class DashboardActivity : AppCompatActivity() {
-
+class DashboardActivity : BaseActivity() {
     private lateinit var binding: ActivityDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,5 +31,9 @@ class DashboardActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onBackPressed() {
+        doubleBackToExit()
     }
 }
