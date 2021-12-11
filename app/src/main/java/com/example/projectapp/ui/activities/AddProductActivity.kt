@@ -2,6 +2,7 @@ package com.example.projectapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import com.example.projectapp.R
@@ -24,12 +25,36 @@ class AddProductActivity : BaseActivity() {
             var name: String = findViewById<EditText>(R.id.signUp_last_name).text.toString().trim()
             var price: String = findViewById<EditText>(R.id.signUp_email).text.toString().trim()
             var image: String = findViewById<EditText>(R.id.signUp_pass).text.toString()
-            val product = Product( id, name, price,image)
-            FirestoreClass().AddProduct(this, product )
+            //if product's fields are correctly filled
+            if(validateForm( id, name, price)){
+                val product = Product( id, name, price,image)
+                FirestoreClass().AddProduct(this, product )
+            }
+
 
         }
         var imageBtn: Button = findViewById(R.id.uploadImageBtn)
         imageBtn.setOnClickListener { startActivity(Intent(this, StorageActivity::class.java)) }
 
+    }
+
+    private fun validateForm( id:String, name:String, price:String ): Boolean {
+        return when {
+            TextUtils.isEmpty(id) -> {
+                showErrorSnackBar("ID for the product is missing")
+                false
+            }
+            TextUtils.isEmpty(name) -> {
+                showErrorSnackBar("Name of the product is missing")
+                false
+            }
+            TextUtils.isEmpty(price) -> {
+                showErrorSnackBar("product pricing is missing")
+                false
+            }
+            else -> {
+                true
+            }
+        }
     }
 }
