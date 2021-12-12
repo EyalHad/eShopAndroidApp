@@ -7,6 +7,7 @@
     tools:context=".ui.activities.AddProductActivity">
 
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_add_product_activity"
         android:layout_width="match_parent"
