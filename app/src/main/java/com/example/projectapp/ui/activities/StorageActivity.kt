@@ -9,10 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.webkit.MimeTypeMap
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -61,7 +58,6 @@ class StorageActivity : AppCompatActivity() {
             if (imageUri != null) {
                 val imageExtention = MimeTypeMap.getSingleton()
                     .getExtensionFromMimeType(contentResolver.getType(imageUri!!))
-
                 val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
                     "Image" + System.currentTimeMillis() + "." + imageExtention
                 )

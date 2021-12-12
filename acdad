@@ -1,0 +1,214 @@
+[33mcommit 12bc27ee8896d286347ceb0c90024536f62c161d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Sat Dec 11 21:41:15 2021 +0200
+
+    change to dump
+
+[33mcommit 63bd9b2f5b991c8bfa7259c7680355c73b2adecd[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Sat Dec 11 20:03:48 2021 +0200
+
+    valide fun added to AddProduct
+
+[33mcommit 436bf8920fa5c2a0bd668612627ca37e406c926a[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Sat Dec 11 19:52:54 2021 +0200
+
+    product option menu added
+
+[33mcommit 012d074ac12730e37805aec7e274570815446709[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Fri Dec 10 15:16:41 2021 +0200
+
+    refactor structure
+
+[33mcommit 7f9c986989961f5bb6eada7bf4c45693f70e92a8[m
+Merge: 4df6971 ed30c51
+Author: Eyal Hadad <71887314+EyalHad@users.noreply.github.com>
+Date:   Fri Dec 10 12:59:32 2021 +0200
+
+    Merge pull request #10 from EyalHad/eyal
+    
+    currently image uploading working but not pretty
+
+[33mcommit ed30c51612718bfbc34ba034317c8eda1c8e78fe[m
+Author: Eyal Hadad <eyalhadad@outlook.com>
+Date:   Fri Dec 10 12:58:06 2021 +0200
+
+    currently image uploading working but not pretty
+
+[33mcommit 4df697151cfded325fa3d4fb281117de48d52829[m
+Merge: 0c0d29b f025aac
+Author: Eyal Hadad <71887314+EyalHad@users.noreply.github.com>
+Date:   Fri Dec 10 11:48:23 2021 +0200
+
+    Merge pull request #8 from EyalHad/eyal
+    
+    Eyal
+
+[33mcommit f025aaccfdf7a41648ac8df7995bc1cff218c88d[m
+Author: Eyal Hadad <eyalhadad@outlook.com>
+Date:   Fri Dec 10 10:36:29 2021 +0200
+
+    StorageActivity for Uploading Images into Firebase Storage
+
+[33mcommit 7bf2de751f06ac7a7dfae415a679b65e249827ea[m
+Author: Eyal Hadad <eyalhadad@outlook.com>
+Date:   Fri Dec 10 09:39:49 2021 +0200
+
+    transfer to intro when sign up succeed
+
+[33mcommit 0c0d29b9434b1bedaa8b2374a7b852e39c9d5cf4[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Fri Dec 10 01:28:06 2021 +0200
+
+    added productactivity and firebase conenction
+
+[33mcommit b3c6396c0206585e642f5d8179a33387fa9640ab[m
+Merge: 2522eae 8e62a33
+Author: rafasu4 <67747529+rafasu4@users.noreply.github.com>
+Date:   Thu Dec 9 13:35:32 2021 +0200
+
+    Merge pull request #7 from EyalHad/master
+    
+    Master
+
+[33mcommit 8e62a33a719d938f3ecdf1dbfda4763481a1e6e3[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Thu Dec 9 13:34:52 2021 +0200
+
+    Intro test added
+
+[33mcommit f514e6095eeb860bc2ca928135d8a42e6d9e9092[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Thu Dec 9 13:33:41 2021 +0200
+
+    Intro test added
+
+[33mcommit 2522eaea01d5620d9e2c840b9beefe958602a040[m
+Merge: fafec2f 76eef45
+Author: rafasu4 <67747529+rafasu4@users.noreply.github.com>
+Date:   Wed Dec 8 16:32:58 2021 +0200
+
+    Merge pull request #6 from EyalHad/master
+    
+    user class added & FireStore user collection established
+
+[33mcommit 76eef451f09a1c1057bf646b2a6d494367e2629e[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Wed Dec 8 16:31:26 2021 +0200
+
+    user class added & FireStore user collection established
+
+[33mcommit fafec2f1d1cebab83c4c9839a2e49a53f726123a[m
+Merge: 3919a4f f080f7d
+Author: rafasu4 <67747529+rafasu4@users.noreply.github.com>
+Date:   Wed Dec 8 15:39:40 2021 +0200
+
+    Merge pull request #5 from EyalHad/master
+    
+    Master
+
+[33mcommit f080f7da913ef20df94e3bd64a624e527c9931cb[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Wed Dec 8 15:38:44 2021 +0200
+
+    signIn & signUp touch up
+
+[33mcommit e6849a928fbf71e422822d999b49491d9859b2e8[m
+Merge: 0560420 3b6d134
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Wed Dec 8 15:36:07 2021 +0200
+
+    Merge branch 'master' of https://github.com/EyalHad/eShopAndroidApp
+
+[33mcommit 05604208139d5d0b69c9fa8ecb196efc67bc1fb9[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Wed Dec 8 15:35:37 2021 +0200
+
+    signIn & signUp touch up
+
+[33mcommit 3919a4fa3145e731d19788833d3805fac8bb4c1e[m
+Merge: 93f554b 3b6d134
+Author: rafasu4 <67747529+rafasu4@users.noreply.github.com>
+Date:   Wed Dec 8 13:44:13 2021 +0200
+
+    Merge pull request #4 from EyalHad/master
+    
+    Sign-In functionality with Firebase added
+
+[33mcommit 3b6d134f0b27fb0e860afd70f103d2eeead61c10[m
+Merge: 122eb01 93f554b
+Author: rafasu4 <67747529+rafasu4@users.noreply.github.com>
+Date:   Wed Dec 8 13:43:53 2021 +0200
+
+    Merge branch 'main' into master
+
+[33mcommit 122eb015bf22d0c829fb5293ea56b146e7f8bbff[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Wed Dec 8 13:41:42 2021 +0200
+
+    Sign-In functionality with fire base added
+
+[33mcommit 93f554b2754ea65c66d616a2fa6284b3aa6cddc7[m
+Merge: b319740 f6c7581
+Author: Eyal Hadad <71887314+EyalHad@users.noreply.github.com>
+Date:   Wed Dec 8 05:05:33 2021 +0200
+
+    Merge pull request #3 from EyalHad/newEdit
+    
+    New edit
+
+[33mcommit f6c7581ddf967233386a7d52e94538383e9a28d5[m
+Author: Eyal Hadad <eyalhadad@outlook.com>
+Date:   Wed Dec 8 05:04:53 2021 +0200
+
+    ignore
+
+[33mcommit 54739e9b6824376f964e264c15ba767598aab43f[m
+Author: Eyal Hadad <eyalhadad@outlook.com>
+Date:   Wed Dec 8 04:23:15 2021 +0200
+
+    change text size in activity_splash.xml
+
+[33mcommit b319740ce810ccf6e849b02c0543a358bbbc19eb[m
+Merge: 88b2341 a021235
+Author: rafasu4 <67747529+rafasu4@users.noreply.github.com>
+Date:   Tue Dec 7 23:53:37 2021 +0200
+
+    Merge pull request #2 from EyalHad/master
+    
+    Firebase authentication established
+
+[33mcommit a021235b79fc5fbb6748f793aa8e91ec6fb6b323[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Tue Dec 7 23:53:05 2021 +0200
+
+    Firebase authentication established
+
+[33mcommit 88b23412724017f89fd1bbe47f9b186412dace5c[m
+Merge: 0e45b7d 6f98679
+Author: rafasu4 <67747529+rafasu4@users.noreply.github.com>
+Date:   Tue Dec 7 23:21:20 2021 +0200
+
+    Merge pull request #1 from EyalHad/master
+    
+    signUp & signIn activities added
+
+[33mcommit 6f98679322ef28faa277a39fad76950eb51f7e92[m
+Author: rafasu4 <raf59101@gmail.com>
+Date:   Tue Dec 7 23:15:27 2021 +0200
+
+    signUp & signIn activities added
+
+[33mcommit 0e45b7d5b35bef04ad994a588c78f5026eb03701[m
+Author: Eyal Hadad <eyalhadad@outlook.com>
+Date:   Tue Dec 7 13:06:55 2021 +0200
+
+    "init"
+
+[33mcommit eae2786c9f19fefe20fe861c7ee36789a75b78dc[m
+Author: Eyal Hadad <eyalhadad@outlook.com>
+Date:   Tue Dec 7 13:04:56 2021 +0200
+
+    init
