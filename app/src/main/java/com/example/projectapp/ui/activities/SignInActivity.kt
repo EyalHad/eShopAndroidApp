@@ -24,7 +24,7 @@ class SignInActivity : BaseActivity() {
         }
     }
 
-    public fun signIn() {
+    private fun signIn() {
         val email: String = findViewById<EditText>(R.id.signIn_Email).text.toString().trim()
         val password: String = findViewById<EditText>(R.id.signIn_Pass).text.toString().trim()
         //if the credentials are legit
@@ -39,7 +39,9 @@ class SignInActivity : BaseActivity() {
                             baseContext, "Authentication succeed!.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        val user = auth.currentUser
+
+                        startActivity(Intent(this, DashboardActivity::class.java))
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.d(TAG, "signInWithEmail:fail")
