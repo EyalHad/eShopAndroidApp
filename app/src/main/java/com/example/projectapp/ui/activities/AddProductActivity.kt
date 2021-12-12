@@ -16,45 +16,19 @@ class AddProductActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_add)
-        supportActionBar?.hide()
-        fullScreen()
-        auth = FirebaseAuth.getInstance()
-        var btn: Button = findViewById(R.id.signUp_Button)
-        btn.setOnClickListener {
-            var id: String = findViewById<EditText>(R.id.signUp_first_name).text.toString().trim()
-            var name: String = findViewById<EditText>(R.id.signUp_last_name).text.toString().trim()
-            var price: String = findViewById<EditText>(R.id.signUp_email).text.toString().trim()
-            var image: String = findViewById<EditText>(R.id.signUp_pass).text.toString()
-            //if product's fields are correctly filled
-            if(validateForm( id, name, price)){
-                val product = Product( id, name, price,image)
-                FirestoreClass().AddProduct(this, product )
-            }
-
-
-        }
-        var imageBtn: Button = findViewById(R.id.uploadImageBtn)
-        imageBtn.setOnClickListener { startActivity(Intent(this, StorageActivity::class.java)) }
 
     }
 
-    private fun validateForm( id:String, name:String, price:String ): Boolean {
-        return when {
-            TextUtils.isEmpty(id) -> {
-                showErrorSnackBar("ID for the product is missing")
-                false
-            }
-            TextUtils.isEmpty(name) -> {
-                showErrorSnackBar("Name of the product is missing")
-                false
-            }
-            TextUtils.isEmpty(price) -> {
-                showErrorSnackBar("product pricing is missing")
-                false
-            }
-            else -> {
-                true
-            }
-        }
-    }
+//    private fun setupActionBar() {
+//
+//
+//        setSupportActionBar(findViewById(R.id.toolbar_add_product_activity))
+//
+//        val actionBar = supportActionBar
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true)
+//            actionBar.setHomeAsUpIndicator(R.drawable.ic_w)
+//        }
+//    }
+
 }
