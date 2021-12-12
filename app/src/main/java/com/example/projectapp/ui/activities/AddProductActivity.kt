@@ -19,22 +19,25 @@ class AddProductActivity : BaseActivity() {
         supportActionBar?.hide()
         fullScreen()
         auth = FirebaseAuth.getInstance()
-        var btn: Button = findViewById(R.id.signUp_Button)
+        var btn: Button = findViewById(R.id.add_product_add_product_btn)
         btn.setOnClickListener {
             var id: String = findViewById<EditText>(R.id.signUp_first_name).text.toString().trim()
             var name: String = findViewById<EditText>(R.id.signUp_last_name).text.toString().trim()
             var price: String = findViewById<EditText>(R.id.signUp_email).text.toString().trim()
-            var image: String = findViewById<EditText>(R.id.signUp_pass).text.toString()
+            var image: String = findViewById<EditText>(R.id.add_product_image_url).text.toString()
             //if product's fields are correctly filled
             if(validateForm( id, name, price)){
                 val product = Product( id, name, price,image)
-                FirestoreClass().AddProduct(this, product )
+                FirestoreClass().addProduct(this, product )
             }
 
 
         }
+
         var imageBtn: Button = findViewById(R.id.uploadImageBtn)
-        imageBtn.setOnClickListener { startActivity(Intent(this, StorageActivity::class.java)) }
+        imageBtn.setOnClickListener {
+            startActivity(Intent(this ,StorageActivity::class.java))
+        }
 
     }
 
