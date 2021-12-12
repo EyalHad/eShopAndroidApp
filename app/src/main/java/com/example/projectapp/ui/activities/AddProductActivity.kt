@@ -17,6 +17,7 @@ class AddProductActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_add)
 
+
     }
 
 //    private fun setupActionBar() {
