@@ -45,12 +45,11 @@
         tools:layout_editor_absoluteX="16dp" />
 
     <EditText
-        android:id="@+id/signUp_pass"
+        android:id="@+id/add_product_image_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:hint="image"
-        android:inputType="textPassword"
         android:textColor="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@+id/signUp_email"
         tools:layout_editor_absoluteX="0dp" />
@@ -62,7 +61,7 @@
         android:layout_height="38dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="344dp"
+        android:layout_marginBottom="300dp"
         android:background="@drawable/shape_button_rounded"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -75,11 +74,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_pass"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_image_url"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/signUp_Button"
+        android:id="@+id/add_product_add_product_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
