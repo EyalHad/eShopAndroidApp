@@ -58,22 +58,24 @@
 
     <Button
         android:id="@+id/uploadImageBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="218dp"
+        android:layout_height="38dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="330dp"
+        android:layout_marginBottom="344dp"
         android:background="@drawable/shape_button_rounded"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="5dp"
-        android:text="Image Uploading"
+        android:text="Upload Image"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_pass"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -85,7 +87,7 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/shape_button_rounded"
         android:gravity="center_horizontal"
-        android:hint="Add! "
+        android:text="Add Product"
         android:orientation="vertical"
         android:padding="5dp"
         android:textSize="25sp"
