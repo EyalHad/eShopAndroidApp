@@ -65,23 +65,23 @@ class SignUpActivity : BaseActivity() {
     ): Boolean {
         return when {
             TextUtils.isEmpty(firstName) -> {
-                showErrorSnackBar("Please enter first name")
+                showErrorSnackBar("Please enter first name",true)
                 false
             }
             TextUtils.isEmpty(lastName) -> {
-                showErrorSnackBar("Please enter last name")
+                showErrorSnackBar("Please enter last name",true)
                 false
             }
             TextUtils.isEmpty(email) -> {
-                showErrorSnackBar("Please enter email address")
+                showErrorSnackBar("Please enter email address",true)
                 false
             }
             TextUtils.isEmpty(password) -> {
-                showErrorSnackBar("Please enter a password")
+                showErrorSnackBar("Please enter a password",true)
                 false
             }
             !TextUtils.equals(password, passwordConfirm) -> {
-                showErrorSnackBar("Passwords didn't match!")
+                showErrorSnackBar("Passwords didn't match!",true)
                 false
             }
             else -> {
