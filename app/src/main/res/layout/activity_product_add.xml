@@ -12,7 +12,7 @@
         android:id="@+id/toolbar_add_product_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/shape_button_rounded"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -46,7 +46,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/light_gray">
+
 
             <FrameLayout
                 android:id="@+id/fl_product_image"
@@ -166,7 +168,8 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/et_textSize"/>
             </com.google.android.material.textfield.TextInputLayout>
-            <com.example.projectapp.utils.MSPEditText
+
+            <com.example.projectapp.utils.MSPButton
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -175,7 +178,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/shape_button_rounded"
+                android:background="@color/colorPrimary"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:paddingTop="@dimen/btn_padding"

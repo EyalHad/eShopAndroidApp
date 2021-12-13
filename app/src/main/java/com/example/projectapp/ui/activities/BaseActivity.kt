@@ -45,12 +45,28 @@ open class BaseActivity : AppCompatActivity() {
 
 
     /**
-     * Print general error in a snackBar.
+     * A function to show the success and error messages in snack bar component.
      */
-    fun showErrorSnackBar(message : String){
-        val snackBar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+    fun showErrorSnackBar(message: String, errorMessage: Boolean) {
+        val snackBar =
+            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view
-        snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_error_color))
+
+        if (errorMessage) {
+            snackBarView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this@BaseActivity,
+                    R.color.colorSnackBarError
+                )
+            )
+        }else{
+            snackBarView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this@BaseActivity,
+                    R.color.colorSnackBarSuccess
+                )
+            )
+        }
         snackBar.show()
     }
 
