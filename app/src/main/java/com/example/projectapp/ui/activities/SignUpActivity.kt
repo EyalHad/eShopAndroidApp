@@ -17,21 +17,22 @@ import com.google.firebase.auth.FirebaseUser
 
 class SignUpActivity : BaseActivity() {
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
         auth = FirebaseAuth.getInstance()
-        var btn: Button = findViewById(R.id.signUp_Button)
+
+        var btn: Button = findViewById(R.id.signUp_Button)//sign-up button
+        //upon clicking sign-up button
         btn.setOnClickListener {
-            var firstName: String =
-                findViewById<EditText>(R.id.signUp_first_name).text.toString().trim()
-            var lastName: String =
-                findViewById<EditText>(R.id.signUp_last_name).text.toString().trim()
-            var email: String = findViewById<EditText>(R.id.signUp_email).text.toString().trim()
-            var password: String = findViewById<EditText>(R.id.signUp_pass).text.toString()
-            var confirmedPassword: String =
-                findViewById<EditText>(R.id.signUp_pass_confirm).text.toString()
+            var firstName: String = findViewById<EditText>(R.id.signUp_first_name).text.toString().trim() //first name field
+            var lastName: String = findViewById<EditText>(R.id.signUp_last_name).text.toString().trim() //last name field
+            var email: String = findViewById<EditText>(R.id.signUp_email).text.toString().trim() //email field
+            var password: String = findViewById<EditText>(R.id.signUp_pass).text.toString() //password field
+            var confirmedPassword: String = findViewById<EditText>(R.id.signUp_pass_confirm).text.toString()////confirm password field
+            //if the fields are correctly entered entered
             if (validateForm(firstName, lastName, email, password, confirmedPassword))
                 register(firstName, lastName, email, password)
         }
@@ -56,13 +57,7 @@ class SignUpActivity : BaseActivity() {
             }
     }
 
-    private fun validateForm(
-        firstName: String,
-        lastName: String,
-        email: String,
-        password: String,
-        passwordConfirm: String
-    ): Boolean {
+    private fun validateForm(firstName: String, lastName: String, email: String, password: String, passwordConfirm: String): Boolean {
         return when {
             TextUtils.isEmpty(firstName) -> {
                 showErrorSnackBar("Please enter first name")

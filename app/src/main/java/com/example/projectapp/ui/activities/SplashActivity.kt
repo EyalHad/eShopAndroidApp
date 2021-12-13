@@ -15,20 +15,9 @@ class SplashActivity : BaseActivity() {
         supportActionBar?.hide()
         fullScreen()
 
-
-        // TODO (Step 7: Add the file in the custom font file to the assets folder. And add the below line of code to apply it to the title TextView.)
-        // Steps for adding the assets folder are :
-        // Right click on the "app" package and GO TO ==> New ==> Folder ==> Assets Folder ==> Finish.
-        // START
-        // This is used to get the file from the assets folder and set it to the title textView.
-//        val typeface: Typeface =
-//            Typeface.createFromAsset(assets, "carbon bl.ttf")
-//        tv_app_name.typeface = typeface
-        // END
-
         //This is used in order to move to the next activity, after fixed time
         //START
-        Handler().postDelayed({startActivity(Intent(this, IntroActivity::class.java))
+        Handler().postDelayed({startActivity(Intent(this, DashboardActivity::class.java))
                               finish()}, //User won't be able to return to splash screen
             2500)
     }
