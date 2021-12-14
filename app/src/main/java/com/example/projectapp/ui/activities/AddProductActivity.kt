@@ -2,7 +2,6 @@ package com.example.projectapp.ui.activities
 
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -13,8 +12,6 @@ import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.projectapp.R
-import com.example.projectapp.firestore.FirestoreClass
-import com.example.projectapp.models.Product
 import com.example.projectapp.utils.Constants
 import com.example.projectapp.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_product_add.*
@@ -72,16 +69,16 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
 
                 R.id.btn_submit -> {
                     if (validateProductDetails()) {
-                        Toast.makeText(
-                            this,
-                            "Submiting...",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        showProgressDialog(R.string.wait.toString())
+                        //reset fields
+                        et_product_title.setText("")
+                        et_product_price.setText("")
+                        et_product_description.setText("")
+                        et_product_quantity.setText("")
+                        startActivity(Intent(this, DashboardActivity::class.java))
                     }
                 }
             }
-
-
         }
     }
 

@@ -18,15 +18,13 @@ class SignInActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
         auth = FirebaseAuth.getInstance()
-        var btn : Button = findViewById(R.id.signIn_Button)
-        btn.setOnClickListener {
-            signIn()
-        }
+        var btn : Button = findViewById(R.id.signIn_Button) //sign-in button
+        btn.setOnClickListener { signIn() }
     }
 
     private fun signIn() {
-        val email: String = findViewById<EditText>(R.id.signIn_Email).text.toString().trim()
-        val password: String = findViewById<EditText>(R.id.signIn_Pass).text.toString().trim()
+        val email: String = findViewById<EditText>(R.id.signIn_Email).text.toString().trim() //email field
+        val password: String = findViewById<EditText>(R.id.signIn_Pass).text.toString().trim() //password field
         //if the credentials are legit
         if (validateForm(email, password)) {
             showProgressDialog(R.string.wait.toString())

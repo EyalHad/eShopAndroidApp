@@ -30,10 +30,10 @@ open class BaseActivity : AppCompatActivity() {
      * Show current action in a dialog.
      */
     fun showProgressDialog(text:String){
-//        progressDialog = Dialog(this)
-//        progressDialog.setContentView(R.layout.dialog_progress)
+        progressDialog = Dialog(this)
+        progressDialog.setContentView(R.layout.dialog_progress)
 //        progressDialog. = text
-//        progressDialog.show()
+        progressDialog.show()
     }
 
     /**
@@ -48,8 +48,7 @@ open class BaseActivity : AppCompatActivity() {
      * A function to show the success and error messages in snack bar component.
      */
     fun showErrorSnackBar(message: String, errorMessage: Boolean) {
-        val snackBar =
-            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+        val snackBar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view
 
         if (errorMessage) {

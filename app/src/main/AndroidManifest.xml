@@ -28,6 +28,7 @@
             android:name=".ui.activities.AddProductActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".ui.activities.DashboardActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity
             android:name=".ui.activities.SplashActivity"

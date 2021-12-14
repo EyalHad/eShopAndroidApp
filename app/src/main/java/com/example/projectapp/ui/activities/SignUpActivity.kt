@@ -47,7 +47,7 @@ class SignUpActivity : BaseActivity() {
                     Toast.makeText(this, "Done!", Toast.LENGTH_LONG).show()
                     val firebaseUser: FirebaseUser = task.result!!.user!! //firebase user instance
                     val user = User(firebaseUser.uid, firstName, lastName, email)
-                    FirestoreClass().registerUser(this, user)
+                    FirestoreClass().registerUser(this, user) //upload the new created user object to 'users' collection
                     startActivity(Intent(this, IntroActivity::class.java))
                 }
                 //if creation was failed
