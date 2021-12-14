@@ -8,6 +8,7 @@
 
 
     <!-- Strings used for fragments for navigation -->
+    <string name="content_description">image</string>
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
@@ -49,5 +50,27 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="product_delete_success_message">Your product is deleted successfully.</string>
+    <string name="delete_dialog_title">Delete</string>
+    <string name="delete_dialog_message">Are you sure you want to delete the product?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="product_uploaded_success_message">Your product is uploaded successfully.</string>
+    <string name="no_products_added_yet">No products added yet!</string>
+    <string name="no_dashboard_item_found">No items found!</string>
+
+    <string name="title_product_details">PRODUCT DETAILS</string>
+    <string name="lbl_product_description">Product Description</string>
+    <string name="lbl_product_details_stock_quantity">Stock Quantity</string>
+
+    <string name="btn_lbl_add_to_cart">ADD TO CART</string>
+    <string name="success_message_item_added_to_cart">Product is added to your cart.</string>
+    <string name="btn_lbl_go_to_cart">GO TO CART</string>
+
+
+
+
 
 </resources>

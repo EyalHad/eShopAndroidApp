@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "977952015738",
+    "firebase_url": "https://eshop-9f30c-default-rtdb.firebaseio.com",
     "project_id": "eshop-9f30c",
     "storage_bucket": "eshop-9f30c.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977952015738:android:c3ea21cdbe3250649502c3",
+        "android_client_info": {
+          "package_name": "com.example.eshopevo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977952015738-r3cojv1cehqd0itfh0c9he41oh40qc3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJm7F7S6ms71QXxsC-U-lIRVBsBQXBU-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977952015738-r3cojv1cehqd0itfh0c9he41oh40qc3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:977952015738:android:f923e3c34989cfec9502c3",

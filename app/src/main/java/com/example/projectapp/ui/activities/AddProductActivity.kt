@@ -77,6 +77,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                             "Submiting...",
                             Toast.LENGTH_LONG
                         ).show()
+
+                        uploadProductImage()
                     }
                 }
             }
@@ -190,6 +192,52 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
+
+    private fun uploadProductImage(){
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass()
+            .uploadImageToCloudStorage(
+                this,
+                ImageFileUri,
+                Constants.PRODUCT_IMAGE
+            )
+    }
+
+    fun imageUploadSuccess(imageURL: String){
+
+        // Initialize the global image url variable
+        ProductImageURL = imageURL
+
+        uploadProductDetails()
+    }
+
+    private fun uploadProductDetails() {
+
+        val product = Product(
+            et_product_title.text.toString(),
+            et_product_price.text.toString(),
+            et_product_description.text.toString(),
+            et_product_quantity.text.toString(),
+            ProductImageURL
+        )
+
+        FirestoreClass().uploadProductDetails(this@AddProductActivity, product)
+    }
+
+    fun productUploadSuccess() {
+
+//        hideProgressDialog()
+
+        Toast.makeText(
+            this@AddProductActivity,
+            resources.getString(R.string.product_uploaded_success_message),
+            Toast.LENGTH_SHORT
+        ).show()
+
+        finish()
+    }
+
+
 
 
 }
