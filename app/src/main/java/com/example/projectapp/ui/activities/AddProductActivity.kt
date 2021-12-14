@@ -12,6 +12,8 @@ import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.projectapp.R
+import com.example.projectapp.firestore.FirestoreClass
+import com.example.projectapp.models.Product
 import com.example.projectapp.utils.Constants
 import com.example.projectapp.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_product_add.*
@@ -30,15 +32,12 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_add)
         setupActionBar()
-
         iv_add_update_product.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
     }
 
     private fun setupActionBar() {
-
         setSupportActionBar(toolbar_add_product_activity)
-
         val actionBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
@@ -70,6 +69,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 R.id.btn_submit -> {
                     if (validateProductDetails()) {
                         showProgressDialog(R.string.wait.toString())
+                        uploadProductDetails()
                         //reset fields
                         et_product_title.setText("")
                         et_product_price.setText("")
@@ -187,6 +187,52 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
+
+    private fun uploadProductImage(){
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass()
+            .uploadImageToCloudStorage(
+                this,
+                ImageFileUri,
+                Constants.PRODUCT_IMAGE
+            )
+    }
+
+    fun imageUploadSuccess(imageURL: String){
+
+        // Initialize the global image url variable
+        ProductImageURL = imageURL
+
+        uploadProductDetails()
+    }
+
+    private fun uploadProductDetails() {
+
+        val product = Product(
+            et_product_title.text.toString(),
+            et_product_price.text.toString(),
+            et_product_description.text.toString(),
+            et_product_quantity.text.toString(),
+            ProductImageURL
+        )
+
+        FirestoreClass().uploadProductDetails(this@AddProductActivity, product)
+    }
+
+    fun productUploadSuccess() {
+
+//        hideProgressDialog()
+
+        Toast.makeText(
+            this@AddProductActivity,
+            resources.getString(R.string.product_uploaded_success_message),
+            Toast.LENGTH_SHORT
+        ).show()
+
+        finish()
+    }
+
+
 
 
 }
