@@ -35,9 +35,7 @@ class SignInActivity : BaseActivity() {
                         Log.d(TAG, "signInWithEmail:success")
                         Toast.makeText(
                             baseContext, "Authentication succeed!.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val user = auth.currentUser
+                            Toast.LENGTH_SHORT).show()
 
                         startActivity(Intent(this, DashboardActivity::class.java))
                     } else {

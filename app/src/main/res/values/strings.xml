@@ -159,6 +159,8 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
 
 
 </resources>

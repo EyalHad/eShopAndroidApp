@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectApp">
         <activity
-            android:name=".ui.activities.ClientShoppingActivity"
+            android:name=".ui.activities.NavigationClientShopping"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.ClientShoppingActivity"
+            android:exported="false"
+            android:label="All Products" />
         <activity
             android:name=".ui.activities.ProductDetailsActivity"
             android:exported="false"
