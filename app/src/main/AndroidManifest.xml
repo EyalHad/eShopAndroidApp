@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectApp">
         <activity
-            android:name=".ui.activities.ProductDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.ProjectApp.NoActionBar"
+            android:name=".ui.activities.ClientShoppingActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.ProductDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ProjectApp.NoActionBar" />
         <activity
             android:name=".ui.activities.StorageActivity"
             android:exported="false" />
@@ -32,12 +35,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.activities.AddProductActivity"
-            android:screenOrientation="portrait"
-
             android:parentActivityName=".ui.activities.DashboardActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
- <activity
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".ui.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
