@@ -35,6 +35,7 @@ class SignUpActivity : BaseActivity() {
             //if the fields are correctly entered entered
             if (validateForm(firstName, lastName, email, password, confirmedPassword))
                 register(firstName, lastName, email, password)
+
         }
     }
 

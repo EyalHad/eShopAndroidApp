@@ -37,7 +37,7 @@ class SignInActivity : BaseActivity() {
                             baseContext, "Authentication succeed!.",
                             Toast.LENGTH_SHORT).show()
 
-                        startActivity(Intent(this, DashboardActivity::class.java))
+                        startActivity(Intent(this, ClientShoppingActivity::class.java))
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.d(TAG, "signInWithEmail:fail")

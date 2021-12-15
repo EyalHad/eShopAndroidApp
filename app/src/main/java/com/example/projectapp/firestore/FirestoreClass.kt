@@ -9,6 +9,11 @@ import com.example.projectapp.ui.activities.SignUpActivity
 import com.example.projectapp.models.Product
 import com.example.projectapp.models.User
 import com.example.projectapp.utils.Constants
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
@@ -20,6 +25,9 @@ import com.google.firebase.storage.StorageReference
 class FirestoreClass {
 
     private val mFireStore = FirebaseFirestore.getInstance()
+    private lateinit var mAuth : FirebaseAuth
+    private lateinit var mDatabase : DatabaseReference
+    private lateinit var user : com.google.firebase.firestore.auth.User
 
     fun registerUser(activity: SignUpActivity, user: User) {
         //create or add to the same collection as given in FireStore
@@ -101,5 +109,18 @@ class FirestoreClass {
                     e
                 )
             }
+    }
+
+    fun checkIfAdmin() : Int{
+        var type:Int = 0
+        mFireStore.collection("users").get().addOnCompleteListener(){
+            if(it.isSuccessful){
+                for (doc in it.result!!){
+                    type = doc.data
+                        .getValue("type") as Int
+                }
+            }
+        }
+        return type
     }
 }

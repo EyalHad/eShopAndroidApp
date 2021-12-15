@@ -1,19 +1,20 @@
 package com.example.projectapp.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.projectapp.R
+import com.example.projectapp.firestore.FirestoreClass
 import com.google.android.material.navigation.NavigationView
+
+
 
 class ClientShoppingActivity : BaseActivity() {
 
-    lateinit var toggle : ActionBarDrawerToggle //menu map toggle
+    private lateinit var toggle : ActionBarDrawerToggle //menu map toggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,13 @@ class ClientShoppingActivity : BaseActivity() {
                 R.id.nav_settings -> Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
                 R.id.nav_edit_profile -> Toast.makeText(this, "Edit Profile Clicked!", Toast.LENGTH_SHORT).show()
                 R.id.nav_login -> startActivity(Intent(this, SignInActivity::class.java))
-                R.id.nav_admin -> Toast.makeText(this, "Admin Clicked!", Toast.LENGTH_SHORT).show()
+                R.id.nav_admin -> {
+                    val type : Int = FirestoreClass().checkIfAdmin()
+                    if(type.equals(0)){
+                        Toast.makeText(this, "Not an Admin!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             }
             true
         }
