@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import android.widget.ImageButton
 import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
 import com.example.projectapp.models.User
@@ -24,8 +25,11 @@ class SignUpActivity : BaseActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        var btn: Button = findViewById(R.id.signUp_Button)//sign-up button
-        //upon clicking sign-up button
+        val btn = findViewById<ImageButton>(R.id.signUp_Button)
+        val signInBtn = findViewById<Button>(R.id.backmember_exist)
+        signInBtn.setOnClickListener {
+            startActivity(Intent(this, SignInActivity::class.java))}
+
         btn.setOnClickListener {
             var firstName: String = findViewById<EditText>(R.id.signUp_first_name).text.toString().trim() //first name field
             var lastName: String = findViewById<EditText>(R.id.signUp_last_name).text.toString().trim() //last name field

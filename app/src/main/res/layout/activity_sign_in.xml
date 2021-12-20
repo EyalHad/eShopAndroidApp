@@ -4,33 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="60dp"
-    android:layout_marginRight="60dp"
-
-    android:id="@+id/signIn">
-
-
-    <EditText
-        android:id="@+id/signIn_Email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="@string/mail_req"
-        android:textColor="@color/light_gray"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="44dp"
-        />
-
-    <EditText
-        android:id="@+id/signIn_Pass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:layout_marginTop="30dp"
-        android:hint="@string/pass_req"
-        android:textColor="@color/light_gray"
-        app:layout_constraintTop_toBottomOf="@+id/signIn_Email"
-        tools:layout_editor_absoluteX="0dp" />
+    android:id="@+id/signIn"
+    android:background="@drawable/blurbackgroud_login">
 
     <!--Optional: add a card for pretty display -->
     <!--    <androidx.cardview.widget.CardView-->
@@ -39,24 +14,111 @@
     <!--        android:layout_height="wrap_content"-->
     <!--        tools:ignore="MissingConstraints"></androidx.cardview.widget.CardView>-->
 
-    <Button
-        android:id="@+id/signIn_Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/shape_button_rounded"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:text="Sign In"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:padding="5dp"
+    <EditText
+        android:id="@+id/signIn_Email"
+        android:layout_width="325dp"
+        android:layout_height="62dp"
+        android:background="@null"
+        android:hint="@string/mail_req"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/light_gray"
+        app:layout_constraintBottom_toTopOf="@+id/signIn_Pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87" />
+
+    <EditText
+        android:id="@+id/signIn_Pass"
+        android:layout_width="325dp"
+        android:layout_height="57dp"
+        android:background="@null"
+        android:hint="@string/pass_req"
+        android:inputType="textPassword"
+        android:textColor="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <ImageButton
+        android:id="@+id/loginsighin"
+        android:layout_width="142dp"
+        android:layout_height="57dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.738"
+        app:srcCompat="@drawable/login" />
+
+<!--    <Button-->
+<!--        android:id="@+id/forgotpss"-->
+<!--        android:layout_width="169dp"-->
+<!--        android:layout_height="49dp"-->
+<!--        android:background="null"-->
+<!--        android:fontFamily="@font/italic"-->
+<!--        android:text="@string/forget_pass"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/grayhalash"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.859"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.759" />-->
+
+
+    <ImageButton
+        android:id="@+id/button_barsignin"
+        android:layout_width="413dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"></Button>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/bottom_bar" />
+
+    <ImageButton
+        android:id="@+id/login_return"
+        android:layout_width="86dp"
+        android:layout_height="46dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048"
+        app:srcCompat="@drawable/backicon" />
+
+
+    <!--    <Button-->
+<!--        android:id="@+id/signIn_Button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:layout_marginRight="30dp"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:background="@drawable/shape_button_rounded"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:orientation="vertical"-->
+<!--        android:text="Sign In"-->
+<!--        android:textSize="25sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:padding="5dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        tools:ignore="MissingConstraints"></Button>-->
 
 
 

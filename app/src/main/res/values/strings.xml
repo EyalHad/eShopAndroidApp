@@ -169,5 +169,12 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="admin">Admin</string>
 
+    <string name="shopname">eShop</string>
+    <string name="intro_text">Explore, and buy your dream presents</string>
+    <string name="forget_pass">Forgot password?</string>
+    <string name="exist_acc">Already a member?</string>
+    <string name="email_sent_success">Successfully sent</string>
+    <string name="err_msg_enter_email">Invalid email</string>
+
 
 </resources>

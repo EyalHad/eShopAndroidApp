@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import com.example.projectapp.R
 import com.google.firebase.auth.FirebaseAuth
@@ -18,8 +19,20 @@ class SignInActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
         auth = FirebaseAuth.getInstance()
-        var btn : Button = findViewById(R.id.signIn_Button) //sign-in button
+        val btn = findViewById<ImageButton>(R.id.loginsighin)
+        val btn2sighup = findViewById<ImageButton>(R.id.button_barsignin)
+        val btnback = findViewById<ImageButton>(R.id.login_return)
+//        val btnforgot : Button = findViewById(R.id.forgotpss)
+       // var btn : Button = findViewById(R.id.signIn_Button) //sign-in button
         btn.setOnClickListener { signIn() }
+        //turn to the signup area
+        btn2sighup.setOnClickListener { startActivity(Intent(this, SignUpActivity::class.java))}
+        btnback.setOnClickListener { finish() }
+//        btnforgot.setOnClickListener {
+//            startActivity(Intent(this, ForgotPasswordActivity::class.java))}
+
+
+
     }
 
     private fun signIn() {
