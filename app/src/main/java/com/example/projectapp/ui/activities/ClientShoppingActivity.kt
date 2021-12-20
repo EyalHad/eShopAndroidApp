@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView
 class ClientShoppingActivity : BaseActivity() {
 
     private lateinit var toggle : ActionBarDrawerToggle //menu map toggle
+    private var user  = FirestoreClass().returnUser()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +36,13 @@ class ClientShoppingActivity : BaseActivity() {
                 R.id.nav_edit_profile -> Toast.makeText(this, "Edit Profile Clicked!", Toast.LENGTH_SHORT).show()
                 R.id.nav_login -> startActivity(Intent(this, SignInActivity::class.java))
                 R.id.nav_admin -> {
-                    val type : Int = FirestoreClass().checkIfAdmin()
-                    if(type.equals(0)){
+                    if(user?.type == 0){
                         Toast.makeText(this, "Not an Admin!", Toast.LENGTH_SHORT).show()
                     }
+                    else{
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                    }
+
                 }
 
             }

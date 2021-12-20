@@ -1,9 +1,14 @@
 package com.example.projectapp.firestore
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
 import android.webkit.MimeTypeMap
+import android.widget.Toast
+import android.widget.Toast.makeText
 import com.example.projectapp.ui.activities.AddProductActivity
 import com.example.projectapp.ui.activities.SignUpActivity
 import com.example.projectapp.models.Product
@@ -19,7 +24,7 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-
+import kotlinx.coroutines.*
 
 
 class FirestoreClass {
@@ -111,16 +116,32 @@ class FirestoreClass {
             }
     }
 
-    fun checkIfAdmin() : Int{
-        var type:Int = 0
-        mFireStore.collection("users").get().addOnCompleteListener(){
-            if(it.isSuccessful){
-                for (doc in it.result!!){
-                    type = doc.data
-                        .getValue("type") as Int
+    /**
+     * Returns if current user is of admin type.
+     */
+   fun checkIfAdmin() : User? {
+        val f = mAuth.currentUser
+    }
+
+
+    fun returnUser(): User? {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        var ob : User? = null
+        uid.let {
+            val docRef = mFireStore.collection("users").document(uid).get()
+            docRef.addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                     ob = document.toObject(User::class.java)
+                } else {
+                    Log.d(TAG, "No such document")
                 }
             }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG, "get failed with ", exception)
+                }
         }
-        return type
+        return ob
     }
+
 }
