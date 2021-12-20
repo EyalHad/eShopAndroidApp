@@ -21,6 +21,8 @@ class SplashActivity : BaseActivity() {
                               finish()}, //User won't be able to return to splash screen
             2500)
     }
+
     //END
 }
 // END
+
