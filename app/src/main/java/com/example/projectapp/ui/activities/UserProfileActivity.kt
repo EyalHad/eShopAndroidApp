@@ -323,7 +323,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
 
         // Redirect to the Main Screen after profile completion.
-        startActivity(Intent(this@UserProfileActivity, DashboardActivity::class.java))
+        startActivity(Intent(this@UserProfileActivity, ClientShoppingActivity::class.java))
         finish()
     }
 
