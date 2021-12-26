@@ -34,12 +34,15 @@ class ClientShoppingActivity : BaseActivity() {
                 R.id.nav_settings -> Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
                 R.id.nav_edit_profile -> Toast.makeText(this, "Edit Profile Clicked!", Toast.LENGTH_SHORT).show()
                 R.id.nav_login -> startActivity(Intent(this, SignInActivity::class.java))
-                R.id.nav_admin -> {
-                    val type : Int = FirestoreClass().checkIfAdmin()
-                    if(type.equals(0)){
-                        Toast.makeText(this, "Not an Admin!", Toast.LENGTH_SHORT).show()
-                    }
-                }
+                R.id.nav_admin -> startActivity(Intent(this, DashboardActivity::class.java))
+
+//                {
+//                    start
+//                    val type : Int = FirestoreClass().checkIfAdmin()
+//                    if(type.equals(0)){
+//                        Toast.makeText(this, "Not an Admin!", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
 
             }
             true
