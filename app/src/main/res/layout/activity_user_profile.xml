@@ -180,12 +180,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/profile_radio_button_marginStartEnd"
                     android:layout_weight="1"
-                    android:background="@drawable/app_gradient_color_background"
+                    android:background="@drawable/drawable_gender_tab_selector"
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"
                     android:text="@string/rb_lbl_male"
-                    android:textColor="@color/white"
+                    android:textColor="@drawable/drawable_gender_tab_text_color_selector"
                     android:textStyle="bold" />
 
                 <com.example.projectapp.utils.MSPRadioButton
@@ -194,11 +194,11 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/profile_radio_button_marginStartEnd"
                     android:layout_weight="1"
-                    android:background="@drawable/app_gradient_color_background"
+                    android:background="@drawable/drawable_gender_tab_text_color_selector"
                     android:button="@null"
                     android:gravity="center"
                     android:text="@string/rb_lbl_female"
-                    android:textColor="@color/white"
+                    android:textColor="@drawable/drawable_gender_tab_text_color_selector"
                     android:textStyle="bold" />
             </RadioGroup>
 

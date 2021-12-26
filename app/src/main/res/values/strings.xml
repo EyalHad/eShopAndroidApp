@@ -313,6 +313,9 @@
     <string name="no_products_sold_out_yet">No products sold out yet!</string>
 
     <string name="title_sold_product_details">SOLD PRODUCT DETAILS</string>
+    <string name="city">City</string>
+    <string name="street">Street</string>
+    <string name="address_number">Address Number</string>
 
 
 </resources>

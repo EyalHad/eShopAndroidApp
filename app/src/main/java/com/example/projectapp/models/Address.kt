@@ -14,11 +14,13 @@ data class Address(
     val name: String = "",
     val mobileNumber: String = "",
 
-    val address: String = "",
+    val city: String = "",
+    val street: String = "",
+    val houseNumber: String = "",
     val zipCode: String = "",
     val additionalNote: String = "",
 
     val type: String = "",
-    val otherDetails: String = "",
-    var id: String = "",
+    val id: String = "",
+
 ) : Parcelable

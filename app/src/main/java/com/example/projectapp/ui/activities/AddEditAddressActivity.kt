@@ -41,7 +41,9 @@ class AddEditAddressActivity : BaseActivity() {
 
                 et_full_name.setText(mAddressDetails?.name)
                 et_phone_number.setText(mAddressDetails?.mobileNumber)
-                et_address.setText(mAddressDetails?.address)
+                et_city.setText(mAddressDetails?.city)
+                et_street.setText(mAddressDetails?.street)
+                et_house_number.setText(mAddressDetails?.houseNumber)
                 et_zip_code.setText(mAddressDetails?.zipCode)
                 et_additional_note.setText(mAddressDetails?.additionalNote)
 
@@ -55,7 +57,7 @@ class AddEditAddressActivity : BaseActivity() {
                     else -> {
                         rb_other.isChecked = true
                         til_other_details.visibility = View.VISIBLE
-                        et_other_details.setText(mAddressDetails?.otherDetails)
+//                        et_other_details.setText(mAddressDetails?.otherDetails)
                     }
                 }
             }
@@ -113,7 +115,17 @@ class AddEditAddressActivity : BaseActivity() {
                 false
             }
 
-            TextUtils.isEmpty(et_address.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(et_city.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_please_enter_address), true)
+                false
+            }
+
+            TextUtils.isEmpty(et_street.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_please_enter_address), true)
+                false
+            }
+
+            TextUtils.isEmpty(et_house_number.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_please_enter_address), true)
                 false
             }
@@ -142,7 +154,9 @@ class AddEditAddressActivity : BaseActivity() {
         // Here we get the text from editText and trim the space
         val fullName: String = et_full_name.text.toString().trim { it <= ' ' }
         val phoneNumber: String = et_phone_number.text.toString().trim { it <= ' ' }
-        val address: String = et_address.text.toString().trim { it <= ' ' }
+        val city: String = et_city.text.toString().trim { it <= ' ' }
+        val street: String = et_street.text.toString().trim { it <= ' ' }
+        val houseNumber: String = et_house_number.text.toString().trim { it <= ' ' }
         val zipCode: String = et_zip_code.text.toString().trim { it <= ' ' }
         val additionalNote: String = et_additional_note.text.toString().trim { it <= ' ' }
         val otherDetails: String = et_other_details.text.toString().trim { it <= ' ' }
@@ -168,7 +182,7 @@ class AddEditAddressActivity : BaseActivity() {
                 FirestoreClass().getCurrentUserID(),
                 fullName,
                 phoneNumber,
-                address,
+                city, street, houseNumber,
                 zipCode,
                 additionalNote,
                 addressType,
