@@ -25,6 +25,22 @@ class FirestoreClass {
     private lateinit var mDatabase : DatabaseReference
     private lateinit var user : com.google.firebase.firestore.auth.User
 
+    /**
+     * A function to get the user id of current logged user.
+     */
+    fun getCurrentUserID(): String {
+        // An Instance of currentUser using FirebaseAuth
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        // A variable to assign the currentUserId if it is not null or else it will be blank.
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+
+        return currentUserID
+    }
+
     fun registerUser(activity: SignUpActivity, user: User) {
         //create or add to the same collection as given in FireStore
         mFireStore.collection("Users")
@@ -134,21 +150,7 @@ class FirestoreClass {
         return type
     }
 
-    /**
-     * A function to get the user id of current logged user.
-     */
-    fun getCurrentUserID(): String {
-        // An Instance of currentUser using FirebaseAuth
-        val currentUser = FirebaseAuth.getInstance().currentUser
 
-        // A variable to assign the currentUserId if it is not null or else it will be blank.
-        var currentUserID = ""
-        if (currentUser != null) {
-            currentUserID = currentUser.uid
-        }
-
-        return currentUserID
-    }
     /**
      * A function to update the user profile data into the database.
      *
@@ -206,19 +208,6 @@ class FirestoreClass {
                 // Here we have received the document snapshot which is converted into the User Data model object.
                 val user = document.toObject(User::class.java)!!
 
-                val sharedPreferences =
-                    activity.getSharedPreferences(
-                        Constants.MYSHOPPAL_PREFERENCES,
-                        Context.MODE_PRIVATE
-                    )
-
-                // Create an instance of the editor which is help us to edit the SharedPreference.
-                val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                editor.putString(
-                    Constants.LOGGED_IN_USERNAME,
-                    "${user.firstName} ${user.lastName}"
-                )
-                editor.apply()
 
                 when (activity) {
                     is SignInActivity -> {
