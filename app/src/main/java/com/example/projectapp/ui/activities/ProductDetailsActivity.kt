@@ -28,40 +28,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         setupActionBar()
     }
 
-//    override fun onClick(v: View?) {
-//        if (v != null) {
-//            when (v.id) {
-//
-//                R.id.btn_add_to_cart -> {
-//                    addToCart()
-//                }
-//
-//                R.id.btn_go_to_cart->{
-//                    startActivity(Intent(this@ProductDetailsActivity, CartListActivity::class.java))
-//                }
-//            }
-//        }
-//    }
 
-    /**
-     * A function to prepare the cart item to add it to the cart in cloud firestore.
-     */
-//    private fun addToCart() {
-//
-//        val addToCart = Cart(
-//            FirestoreClass().getCurrentUserID(),
-//            mProductId,
-//            mProductDetails.title,
-//            mProductDetails.price,
-//            mProductDetails.image,
-//            Constants.DEFAULT_CART_QUANTITY
-//        )
-//
-//        // Show the progress dialog
-//        showProgressDialog(resources.getString(R.string.please_wait))
-//
-//        FirestoreClass().addCartItems(this@ProductDetailsActivity, addToCart)
-//    }
 
     /**
      * A function for actionBar Setup.

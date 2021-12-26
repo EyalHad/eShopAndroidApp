@@ -1,8 +1,6 @@
 package com.example.projectapp.firestore
 
 import android.app.Activity
-import android.content.Context
-import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import com.example.projectapp.models.Address
@@ -20,7 +18,7 @@ import com.google.firebase.storage.StorageReference
 
 class FirestoreClass {
 
-    private val mFireStore = FirebaseFirestore.getInstance()
+    private val fireStore = FirebaseFirestore.getInstance()
     private lateinit var mAuth : FirebaseAuth
     private lateinit var mDatabase : DatabaseReference
     private lateinit var user : com.google.firebase.firestore.auth.User
@@ -43,7 +41,7 @@ class FirestoreClass {
 
     fun registerUser(activity: SignUpActivity, user: User) {
         //create or add to the same collection as given in FireStore
-        mFireStore.collection("Users")
+        fireStore.collection("Users")
             //Document by unique ID of each user
             .document(user.id).set(user, SetOptions.merge())
             .addOnSuccessListener {
@@ -119,7 +117,7 @@ class FirestoreClass {
     }
 
     fun uploadProductDetails(activity: AddProductActivity, productInfo: Product) {
-        mFireStore.collection(Constants.PRODUCTS)
+        fireStore.collection(Constants.PRODUCTS)
             .document()
             .set(productInfo, SetOptions.merge())
             .addOnSuccessListener {
@@ -139,7 +137,7 @@ class FirestoreClass {
 
     fun checkIfAdmin() : Int{
         var type:Int = 0
-        mFireStore.collection("users").get().addOnCompleteListener(){
+        fireStore.collection("users").get().addOnCompleteListener(){
             if(it.isSuccessful){
                 for (doc in it.result!!){
                     type = doc.data
@@ -159,7 +157,7 @@ class FirestoreClass {
      */
     fun updateUserProfileData(activity: Activity, userHashMap: HashMap<String, Any>) {
         // Collection Name
-        mFireStore.collection(Constants.USERS)
+        fireStore.collection(Constants.USERS)
             // Document ID against which the data to be updated. Here the document id is the current logged in user id.
             .document(getCurrentUserID())
             // A HashMap of fields which are to be updated.
@@ -197,7 +195,7 @@ class FirestoreClass {
     fun getUserDetails(activity: Activity) {
 
         // Here we pass the collection name from which we wants the data.
-        mFireStore.collection(Constants.USERS)
+        fireStore.collection(Constants.USERS)
             // The document id to get the Fields of user.
             .document(getCurrentUserID())
             .get()
@@ -249,7 +247,7 @@ class FirestoreClass {
     fun addAddress(activity: AddEditAddressActivity, addressInfo: Address) {
 
         // Collection name address.
-        mFireStore.collection(Constants.ADDRESSES)
+        fireStore.collection(Constants.ADDRESSES)
             .document()
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(addressInfo, SetOptions.merge())
@@ -278,7 +276,7 @@ class FirestoreClass {
      */
     fun updateAddress(activity: AddEditAddressActivity, addressInfo: Address, addressId: String) {
 
-        mFireStore.collection(Constants.ADDRESSES)
+        fireStore.collection(Constants.ADDRESSES)
             .document(addressId)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(addressInfo, SetOptions.merge())
