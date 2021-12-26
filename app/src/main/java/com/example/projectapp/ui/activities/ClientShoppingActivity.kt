@@ -3,6 +3,7 @@ package com.example.projectapp.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -31,8 +32,12 @@ class ClientShoppingActivity : BaseActivity() {
             when(it.itemId){
                 R.id.nav_home -> Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
                 R.id.nav_my_orders -> Toast.makeText(this, "My Orders Clicked!", Toast.LENGTH_SHORT).show()
-                R.id.nav_settings -> Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
-                R.id.nav_edit_profile -> Toast.makeText(this, "Edit Profile Clicked!", Toast.LENGTH_SHORT).show()
+                R.id.nav_settings -> {
+
+                    Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,SettingsActivity::class.java))
+                }
+
                 R.id.nav_login -> startActivity(Intent(this, SignInActivity::class.java))
                 R.id.nav_admin -> startActivity(Intent(this, DashboardActivity::class.java))
 
@@ -59,6 +64,8 @@ class ClientShoppingActivity : BaseActivity() {
     override fun onBackPressed() {
         doubleBackToExit()
     }
+
+
 
 
 }
