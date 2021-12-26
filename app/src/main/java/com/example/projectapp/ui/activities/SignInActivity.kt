@@ -44,18 +44,6 @@ class SignInActivity : BaseActivity(), View.OnClickListener {
         // Click event assigned to Register text.
         tv_register.setOnClickListener(this)
 
-//        auth = FirebaseAuth.getInstance()
-//        val btn = findViewById<ImageButton>(R.id.btn_login)
-//        val btn2sighup = findViewById<ImageButton>(R.id.button_barsignin)
-//        val btnback = findViewById<ImageButton>(R.id.login_return)
-////        val btnforgot : Button = findViewById(R.id.forgotpss)
-//        // var btn : Button = findViewById(R.id.signIn_Button) //sign-in button
-//        btn.setOnClickListener { signIn() }
-//        //turn to the signup area
-//        btn2sighup.setOnClickListener { startActivity(Intent(this, SignUpActivity::class.java)) }
-//        btnback.setOnClickListener { finish() }
-////        btnforgot.setOnClickListener {
-////            startActivity(Intent(this, ForgotPasswordActivity::class.java))}
 
 
     }
@@ -95,7 +83,7 @@ class SignInActivity : BaseActivity(), View.OnClickListener {
             startActivity(intent)
         } else {
             // Redirect the user to Dashboard Screen after log in.
-            startActivity(Intent(this@SignInActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@SignInActivity, ClientShoppingActivity::class.java))
         }
         finish()
     }
