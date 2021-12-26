@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 class SettingsActivity : BaseActivity(), View.OnClickListener {
 
     // A variable for user details which will be initialized later on.
-    private lateinit var mUserDetails: User
+    private lateinit var userDetails: User
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -48,7 +48,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
                 R.id.tv_edit -> {
                     val intent = Intent(this@SettingsActivity, UserProfileActivity::class.java)
-                    intent.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
+                    intent.putExtra(Constants.EXTRA_USER_DETAILS, userDetails)
                     startActivity(intent)
                 }
 
@@ -99,7 +99,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
      */
     fun userDetailsSuccess(user: User) {
 
-        mUserDetails = user
+        userDetails = user
 
         // Hide the progress dialog
         dismissDialog()

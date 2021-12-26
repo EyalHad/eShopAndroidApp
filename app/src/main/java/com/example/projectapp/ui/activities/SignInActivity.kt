@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
 
 @Suppress("DEPRECATION")
 class SignInActivity : BaseActivity(), View.OnClickListener {
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

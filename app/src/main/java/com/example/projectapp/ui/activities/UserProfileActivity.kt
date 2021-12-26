@@ -26,12 +26,12 @@ import java.io.IOException
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     // Instance of User data model class. We will initialize it later on.
-    private lateinit var mUserDetails: User
+    private lateinit var userDetails: User
 
     // Add a global variable for URI of a selected image from phone storage.
-    private var mSelectedImageFileUri: Uri? = null
+    private var selectedImageFileUri: Uri? = null
 
-    private var mUserProfileImageURL: String = ""
+    private var userProfileImageURL: String = ""
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -44,23 +44,23 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         if (intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             // Get the user details from intent as a ParcelableExtra.
-            mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
+            userDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
 
         // If the profile is incomplete then user is from login screen and wants to complete the profile.
-        if (mUserDetails.profileCompleted == 0) {
+        if (userDetails.profileCompleted == 0) {
             // Update the title of the screen to complete profile.
             tv_title.text = resources.getString(R.string.title_complete_profile)
 
             // Here, the some of the edittext components are disabled because it is added at a time of Registration.
             et_first_name.isEnabled = false
-            et_first_name.setText(mUserDetails.firstName)
+            et_first_name.setText(userDetails.firstName)
 
             et_last_name.isEnabled = false
-            et_last_name.setText(mUserDetails.lastName)
+            et_last_name.setText(userDetails.lastName)
 
             et_email.isEnabled = false
-            et_email.setText(mUserDetails.email)
+            et_email.setText(userDetails.email)
         } else {
 
             // Call the setup action bar function.
@@ -70,19 +70,19 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             tv_title.text = resources.getString(R.string.title_edit_profile)
 
             // Load the image using the GlideLoader class with the use of Glide Library.
-            GlideLoader(this@UserProfileActivity).loadUserPicture(mUserDetails.image, iv_user_photo)
+            GlideLoader(this@UserProfileActivity).loadUserPicture(userDetails.image, iv_user_photo)
 
             // Set the existing values to the UI and allow user to edit except the Email ID.
-            et_first_name.setText(mUserDetails.firstName)
-            et_last_name.setText(mUserDetails.lastName)
+            et_first_name.setText(userDetails.firstName)
+            et_last_name.setText(userDetails.lastName)
 
             et_email.isEnabled = false
-            et_email.setText(mUserDetails.email)
+            et_email.setText(userDetails.email)
 
-            if (mUserDetails.mobile != 0L) {
-                et_mobile_number.setText(mUserDetails.mobile.toString())
+            if (userDetails.mobile != 0L) {
+                et_mobile_number.setText(userDetails.mobile.toString())
             }
-            if (mUserDetails.gender == Constants.MALE) {
+            if (userDetails.gender == Constants.MALE) {
                 rb_male.isChecked = true
             } else {
                 rb_female.isChecked = true
@@ -127,11 +127,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                         // Show the progress dialog.
                         showProgressDialog(resources.getString(R.string.please_wait))
 
-                        if (mSelectedImageFileUri != null) {
+                        if (selectedImageFileUri != null) {
 
                             FirestoreClass().uploadImageToCloudStorage(
                                 this@UserProfileActivity,
-                                mSelectedImageFileUri,
+                                selectedImageFileUri,
                                 Constants.USER_PROFILE_IMAGE
                             )
                         } else {
@@ -194,10 +194,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     try {
 
                         // The uri of selected image from phone storage.
-                        mSelectedImageFileUri = data.data!!
+                        selectedImageFileUri = data.data!!
 
                         GlideLoader(this@UserProfileActivity).loadUserPicture(
-                            mSelectedImageFileUri!!,
+                            selectedImageFileUri!!,
                             iv_user_photo
                         )
                     } catch (e: IOException) {
@@ -263,13 +263,13 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         // Get the FirstName from editText and trim the space
         val firstName = et_first_name.text.toString().trim { it <= ' ' }
-        if (firstName != mUserDetails.firstName) {
+        if (firstName != userDetails.firstName) {
             userHashMap[Constants.FIRST_NAME] = firstName
         }
 
         // Get the LastName from editText and trim the space
         val lastName = et_last_name.text.toString().trim { it <= ' ' }
-        if (lastName != mUserDetails.lastName) {
+        if (lastName != userDetails.lastName) {
             userHashMap[Constants.LAST_NAME] = lastName
         }
 
@@ -281,22 +281,22 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             Constants.FEMALE
         }
 
-        if (mUserProfileImageURL.isNotEmpty()) {
-            userHashMap[Constants.IMAGE] = mUserProfileImageURL
+        if (userProfileImageURL.isNotEmpty()) {
+            userHashMap[Constants.IMAGE] = userProfileImageURL
         }
 
-        if (mobileNumber.isNotEmpty() && mobileNumber != mUserDetails.mobile.toString()) {
+        if (mobileNumber.isNotEmpty() && mobileNumber != userDetails.mobile.toString()) {
             userHashMap[Constants.MOBILE] = mobileNumber.toLong()
         }
 
-        if (gender.isNotEmpty() && gender != mUserDetails.gender) {
+        if (gender.isNotEmpty() && gender != userDetails.gender) {
             userHashMap[Constants.GENDER] = gender
         }
 
         // Here if user is about to complete the profile then update the field or else no need.
         // 0: User profile is incomplete.
         // 1: User profile is completed.
-        if (mUserDetails.profileCompleted == 0) {
+        if (userDetails.profileCompleted == 0) {
             userHashMap[Constants.COMPLETE_PROFILE] = 1
         }
 
@@ -334,7 +334,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
      */
     fun imageUploadSuccess(imageURL: String) {
 
-        mUserProfileImageURL = imageURL
+        userProfileImageURL = imageURL
 
         updateUserProfileDetails()
     }

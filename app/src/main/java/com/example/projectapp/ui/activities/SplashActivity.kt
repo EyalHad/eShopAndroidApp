@@ -1,11 +1,13 @@
 package com.example.projectapp.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.example.projectapp.R
 
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor

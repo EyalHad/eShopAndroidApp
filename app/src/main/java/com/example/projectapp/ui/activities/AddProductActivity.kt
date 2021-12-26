@@ -23,10 +23,10 @@ import java.io.IOException
 class AddProductActivity : BaseActivity(), View.OnClickListener {
 
     // A global variable for URI of a selected image from phone storage.
-    private var ImageFileUri: Uri? = null
+    private var imageFileUri: Uri? = null
 
     // A global variable for uploaded product image URL.
-    private var ProductImageURL: String = ""
+    private var productImageURL: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,7 +126,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                         )
                     )
                     // The uri of selection image from phone storage.
-                    ImageFileUri = data.data!!
+                    imageFileUri = data.data!!
                     try {
                         var iv_product_image: ImageView = findViewById(R.id.iv_product_image)
                         // Load the product image in the ImageView.
@@ -134,7 +134,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                             this@AddProductActivity
                         )
                             .loadProductPicture(
-                                ImageFileUri!!,
+                                imageFileUri!!,
                                 iv_product_image
                             )
                     } catch (e: IOException) {
@@ -153,7 +153,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     private fun validateProductDetails(): Boolean {
         return when {
 
-            ImageFileUri == null -> {
+            imageFileUri == null -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_select_product_image), true)
                 false
             }
@@ -193,7 +193,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         FirestoreClass()
             .uploadImageToCloudStorage(
                 this,
-                ImageFileUri,
+                imageFileUri,
                 Constants.PRODUCT_IMAGE
             )
     }
@@ -201,7 +201,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     fun imageUploadSuccess(imageURL: String){
 
         // Initialize the global image url variable
-        ProductImageURL = imageURL
+        productImageURL = imageURL
 
         uploadProductDetails()
     }
@@ -213,7 +213,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             et_product_price.text.toString(),
             et_product_description.text.toString(),
             et_product_quantity.text.toString(),
-            ProductImageURL
+            productImageURL
         )
 
         FirestoreClass().uploadProductDetails(this@AddProductActivity, product)
