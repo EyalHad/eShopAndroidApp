@@ -30,10 +30,10 @@ open class BaseActivity : AppCompatActivity() {
      */
     private lateinit var progressDialog: Dialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_base)
+//    }
 
     /**
      * Show current action in a dialog.
