@@ -20,8 +20,10 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ClientShoppingActivity : BaseActivity() {
 
-    private lateinit var toggle : ActionBarDrawerToggle //menu map toggle
-    private lateinit var auth: FirebaseAuth
+
+    private lateinit var toggle: ActionBarDrawerToggle //menu map toggle
+    private var userType: Int = 0
+    private lateinit var auth : FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,37 +31,42 @@ class ClientShoppingActivity : BaseActivity() {
         setContentView(R.layout.activity_client_shopping)
         auth = FirebaseAuth.getInstance()
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView : NavigationView = findViewById(R.id.nav_view_client_shopping)
+        val navView: NavigationView = findViewById(R.id.nav_view_client_shopping)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle) //listen when toggle is clicked
         toggle.syncState() //sync to state (open or closed)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().checkIfAdmin(this)
+
+
         //what to do on each item in the menu
         navView.setNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.nav_home -> Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
-                R.id.nav_my_orders -> Toast.makeText(this, "My Orders Clicked!", Toast.LENGTH_SHORT).show()
+                R.id.nav_my_orders -> Toast.makeText(this, "My Orders Clicked!", Toast.LENGTH_SHORT)
+                    .show()
                 R.id.nav_settings -> {
                     Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this,SettingsActivity::class.java))
+                    startActivity(Intent(this, SettingsActivity::class.java))
                 }
 
-                R.id.nav_login ->{
+                R.id.nav_login -> {
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this, SignInActivity::class.java))
                 }
 
-                R.id.nav_admin -> startActivity(Intent(this, DashboardActivity::class.java))
+                R.id.nav_admin -> {
+                    if (userType == 1) {
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                    } else {
+                        showErrorSnackBar("This is Admin Area - You are NOT One ", true)
+                    }
 
-//                {
-//                    start
-//                    val type : Int = FirestoreClass().checkIfAdmin()
-//                    if(type.equals(0)){
-//                        Toast.makeText(this, "Not an Admin!", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
+                }
+
 
             }
             true
@@ -69,7 +76,9 @@ class ClientShoppingActivity : BaseActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){return true}
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -77,52 +86,10 @@ class ClientShoppingActivity : BaseActivity() {
         doubleBackToExit()
     }
 
-//    private fun admin() {
-//        val email: String = findViewById<EditText>(R.id.signIn_Email).text.toString().trim() //email field
-//        val password: String = findViewById<EditText>(R.id.signIn_Pass).text.toString().trim() //password field
-//        //if the credentials are legit
-//        if (validateForm(email, password)) {
-//            showProgressDialog(R.string.wait.toString())
-//            auth.signInWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this) { task ->
-//                    if (task.isSuccessful) {
-//                        // Sign in success, update UI with the signed-in user's information
-//                        Log.d(ContentValues.TAG, "Admin:success")
-//                        Toast.makeText(
-//                            baseContext, "Authentication succeed!.",
-//                            Toast.LENGTH_SHORT).show()
-//
-//                        startActivity(Intent(this, DashboardActivity::class.java))
-//                    } else {
-//                        // If sign in fails, display a message to the user.
-//                        Log.d(ContentValues.TAG, "signInWithEmail:fail")
-//                        Toast.makeText(
-//                            baseContext, "Authentication failed.",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//
-//                    }
-//
-//                }
-//        }
-//    }
 
-    private fun validateForm( email:String, password:String ): Boolean {
-        return when {
-            TextUtils.isEmpty(email) -> {
-                showErrorSnackBar("Please enter email address",true)
-                false
-            }
-            TextUtils.isEmpty(password) -> {
-                showErrorSnackBar("Please enter a password",true)
-                false
-            }
-            else -> {
-                true
-            }
-        }
+    fun setUserType(type: Int) {
+            userType = type
     }
-
 
 
 
