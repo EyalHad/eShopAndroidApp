@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.projectapp.ui.activities.IntroActivity"
     android:id="@+id/intro"
-android:background="@drawable/logotextscreen">
+android:background="@drawable/background">
 
 
     <TextView
@@ -37,33 +37,34 @@ android:background="@drawable/logotextscreen">
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/intro_mainText"
-        app:layout_constraintVertical_bias="0.455" />
+        app:layout_constraintVertical_bias="0.452" />
 
     <ImageButton
         android:id="@+id/sighupintro"
-        android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:background="@null"
         android:cropToPadding="false"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.851"
+        app:layout_constraintVertical_bias="0.245"
         app:srcCompat="@drawable/signup_intro"
         tools:visibility="visible" />
 
     <ImageButton
         android:id="@+id/login_intro"
-        android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sighupintro"
+        app:layout_constraintVertical_bias="0.109"
         app:srcCompat="@drawable/login_intro" />
 
 

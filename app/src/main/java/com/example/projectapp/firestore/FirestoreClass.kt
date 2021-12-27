@@ -119,9 +119,9 @@ class FirestoreClass {
     /**
      * Returns if current user is of admin type.
      */
-   fun checkIfAdmin() : User? {
-        val f = mAuth.currentUser
-    }
+//   fun checkIfAdmin() : User? {
+//        val f = mAuth.currentUser
+//    }
 
 
     fun returnUser(): User? {
