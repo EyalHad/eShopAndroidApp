@@ -59,7 +59,7 @@ class ClientShoppingActivity : BaseActivity() {
                 }
 
                 R.id.nav_admin -> {
-                    if (userType == 1) {
+                    if (userType == 0) {
                         startActivity(Intent(this, DashboardActivity::class.java))
                     } else {
                         showErrorSnackBar("This is Admin Area - You are NOT One ", true)

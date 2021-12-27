@@ -1,11 +1,7 @@
 package com.example.projectapp.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
 import com.example.projectapp.R
-import android.text.TextUtils
-import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_forgot_password.*
@@ -31,7 +27,7 @@ class ForgotPasswordActivity : BaseActivity() {
         btn_submit.setOnClickListener {
 
             // Get the email id from the input field.
-            val email: String = et_email.text.toString().trim { it <= ' ' }
+            val email: String = admin_et_email.text.toString().trim { it <= ' ' }
 
             // Now, If the email entered in blank then show the error message or else continue with the implemented feature.
             if (email.isEmpty()) {

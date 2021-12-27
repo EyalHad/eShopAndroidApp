@@ -49,11 +49,6 @@ class ProductsFragment : Fragment() {
             textView.text = it
         })
         readFireStoreData(root)
-
-
-
-
-
         return root
     }
 

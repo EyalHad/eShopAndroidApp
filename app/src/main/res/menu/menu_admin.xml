@@ -5,11 +5,13 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/nav_client_board"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="Home Screen"/>
-    <item
         android:id="@+id/nav_add_admin"
         android:icon="@drawable/ic_baseline_admin_panel_settings_24"
         android:title="Add Admin"/>
+
+    <item
+        android:id="@+id/nav_client_board"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Return To Home Screen"/>
+
 </menu>

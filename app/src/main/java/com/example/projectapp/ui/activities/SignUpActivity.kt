@@ -68,7 +68,7 @@ class SignUpActivity : BaseActivity() {
      */
     private fun validateRegisterDetails(): Boolean {
         return when {
-            TextUtils.isEmpty(et_first_name.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(first_name.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_first_name), true)
                 false
             }
@@ -145,7 +145,7 @@ class SignUpActivity : BaseActivity() {
                             // Instance of User data model class.
                             val user = User(
                                 firebaseUser.uid,
-                                et_first_name.text.toString().trim { it <= ' ' },
+                                first_name.text.toString().trim { it <= ' ' },
                                 et_last_name.text.toString().trim { it <= ' ' },
                                 et_email.text.toString().trim { it <= ' ' }
                             )

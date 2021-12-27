@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.example.projectapp.utils.MSPEditText
-                    android:id="@+id/et_first_name"
+                    android:id="@+id/admin_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -62,7 +62,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_last_name"
+                android:id="@+id/admin_til_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -75,7 +75,7 @@
                 app:layout_constraintTop_toBottomOf="@id/til_first_name">
 
                 <com.example.projectapp.utils.MSPEditText
-                    android:id="@+id/et_last_name"
+                    android:id="@+id/admin_et_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -85,7 +85,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_email"
+                android:id="@+id/admin_til_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -95,10 +95,10 @@
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_last_name">
+                app:layout_constraintTop_toBottomOf="@id/admin_til_last_name">
 
                 <com.example.projectapp.utils.MSPEditText
-                    android:id="@+id/et_email"
+                    android:id="@+id/admin_et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -108,7 +108,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_password"
+                android:id="@+id/admin_til_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -118,10 +118,10 @@
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_email">
+                app:layout_constraintTop_toBottomOf="@id/admin_til_email">
 
                 <com.example.projectapp.utils.MSPEditText
-                    android:id="@+id/et_password"
+                    android:id="@+id/admin_et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -131,7 +131,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_confirm_password"
+                android:id="@+id/admin_til_confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -141,10 +141,10 @@
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_password">
+                app:layout_constraintTop_toBottomOf="@id/admin_til_password">
 
                 <com.example.projectapp.utils.MSPEditText
-                    android:id="@+id/et_confirm_password"
+                    android:id="@+id/admin_et_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -162,7 +162,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_confirm_password">
+                app:layout_constraintTop_toBottomOf="@id/admin_til_confirm_password">
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cb_terms_and_condition"

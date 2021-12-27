@@ -1,15 +1,10 @@
 package com.example.projectapp.ui.activities
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
 import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
 import com.example.projectapp.models.User
@@ -53,11 +48,11 @@ class SignInActivity : BaseActivity(), View.OnClickListener {
      */
     private fun validateLoginDetails(): Boolean {
         return when {
-            TextUtils.isEmpty(et_email.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(admin_et_email.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false
             }
-            TextUtils.isEmpty(et_password.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(admin_et_password.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_password), true)
                 false
             }
@@ -98,8 +93,8 @@ class SignInActivity : BaseActivity(), View.OnClickListener {
             showProgressDialog(resources.getString(R.string.please_wait))
 
             // Get the text from editText and trim the space
-            val email = et_email.text.toString().trim { it <= ' ' }
-            val password = et_password.text.toString().trim { it <= ' ' }
+            val email = admin_et_email.text.toString().trim { it <= ' ' }
+            val password = admin_et_password.text.toString().trim { it <= ' ' }
 
             // Log-In using FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)

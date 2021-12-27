@@ -53,14 +53,14 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             tv_title.text = resources.getString(R.string.title_complete_profile)
 
             // Here, the some of the edittext components are disabled because it is added at a time of Registration.
-            et_first_name.isEnabled = false
-            et_first_name.setText(userDetails.firstName)
+            admin_first_name.isEnabled = false
+            admin_first_name.setText(userDetails.firstName)
 
-            et_last_name.isEnabled = false
-            et_last_name.setText(userDetails.lastName)
+            admin_et_last_name.isEnabled = false
+            admin_et_last_name.setText(userDetails.lastName)
 
-            et_email.isEnabled = false
-            et_email.setText(userDetails.email)
+            admin_et_email.isEnabled = false
+            admin_et_email.setText(userDetails.email)
         } else {
 
             // Call the setup action bar function.
@@ -73,11 +73,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             GlideLoader(this@UserProfileActivity).loadUserPicture(userDetails.image, iv_user_photo)
 
             // Set the existing values to the UI and allow user to edit except the Email ID.
-            et_first_name.setText(userDetails.firstName)
-            et_last_name.setText(userDetails.lastName)
+            admin_first_name.setText(userDetails.firstName)
+            admin_et_last_name.setText(userDetails.lastName)
 
-            et_email.isEnabled = false
-            et_email.setText(userDetails.email)
+            admin_et_email.isEnabled = false
+            admin_et_email.setText(userDetails.email)
 
             if (userDetails.mobile != 0L) {
                 et_mobile_number.setText(userDetails.mobile.toString())
@@ -262,13 +262,13 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         val userHashMap = HashMap<String, Any>()
 
         // Get the FirstName from editText and trim the space
-        val firstName = et_first_name.text.toString().trim { it <= ' ' }
+        val firstName = admin_first_name.text.toString().trim { it <= ' ' }
         if (firstName != userDetails.firstName) {
             userHashMap[Constants.FIRST_NAME] = firstName
         }
 
         // Get the LastName from editText and trim the space
-        val lastName = et_last_name.text.toString().trim { it <= ' ' }
+        val lastName = admin_et_last_name.text.toString().trim { it <= ' ' }
         if (lastName != userDetails.lastName) {
             userHashMap[Constants.LAST_NAME] = lastName
         }

@@ -11,7 +11,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
 import com.example.projectapp.models.User
+import kotlinx.android.synthetic.main.activity_add_admin.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_sign_up.btn_register
+import kotlinx.android.synthetic.main.activity_sign_up.toolbar_register_activity
 
 class AdminRegistrationActivity : BaseActivity() {
     /**
@@ -66,7 +69,7 @@ class AdminRegistrationActivity : BaseActivity() {
      */
     private fun validateRegisterDetails(): Boolean {
         return when {
-            TextUtils.isEmpty(et_first_name.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(first_name.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_first_name), true)
                 false
             }
@@ -94,7 +97,7 @@ class AdminRegistrationActivity : BaseActivity() {
                 false
             }
 
-            et_password.text.toString().trim { it <= ' ' } != et_confirm_password.text.toString()
+            admin_et_password.text.toString().trim { it <= ' ' } != admin_et_confirm_password.text.toString()
                 .trim { it <= ' ' } -> {
                 showErrorSnackBar(
                     resources.getString(R.string.err_msg_password_and_confirm_password_mismatch),
@@ -143,9 +146,9 @@ class AdminRegistrationActivity : BaseActivity() {
                             // Instance of User data model class.
                             val user = User(
                                 firebaseUser.uid,
-                                et_first_name.text.toString().trim { it <= ' ' },
-                                et_last_name.text.toString().trim { it <= ' ' },
-                                et_email.text.toString().trim { it <= ' ' },
+                                admin_first_name.text.toString().trim { it <= ' ' },
+                                admin_et_last_name.text.toString().trim { it <= ' ' },
+                                admin_et_email.text.toString().trim { it <= ' ' },
                                 "",0,"",0,1
                             )
 
