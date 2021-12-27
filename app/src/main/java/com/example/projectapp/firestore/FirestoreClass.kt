@@ -25,18 +25,10 @@ class FirestoreClass {
 
     /** ------------------- Authentication Area ----------------------------------------------------------------------------*/
     /** -------------------                     -------------------*/
-//    fun checkIfAdmin() : Int{
-//        var type:Int = 0
-//        fireStore.collection("users").get().addOnCompleteListener(){
-//            if(it.isSuccessful){
-//                for (doc in it.result!!){
-//                    type = doc.data
-//                        .getValue("type") as Int
-//                }
-//            }
-//        }
-//        return type
-//    }
+    fun checkIfAdmin(activity: ClientShoppingActivity){
+        getUserDetails(activity)
+        activity.dismissDialog()
+    }
 
     /**
      * A function to get the user id of current logged user.
@@ -54,24 +46,51 @@ class FirestoreClass {
         return currentUserID
     }
 
-    fun registerUser(activity: SignUpActivity, user: User) {
-        //create or add to the same collection as given in FireStore
-        fireStore.collection("Users")
-            //Document by unique ID of each user
-            .document(user.id).set(user, SetOptions.merge())
-            .addOnSuccessListener {
+    fun registerUser(activity: Activity, user: User) {
 
-                // Here call a function of base activity for transferring the result to it.
-                activity.userRegistrationSuccess()
+        when (activity) {
+
+            is SignUpActivity -> {
+                //create or add to the same collection as given in FireStore
+                fireStore.collection("Users")
+                    //Document by unique ID of each user
+                    .document(user.id).set(user, SetOptions.merge())
+                    .addOnSuccessListener {
+
+                        // Here call a function of base activity for transferring the result to it.
+                        activity.userRegistrationSuccess()
+                    }
+                    .addOnFailureListener { e ->
+                        activity.dismissDialog()
+                        Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while registering the user.",
+                            e
+                        )
+                    }
             }
-            .addOnFailureListener { e ->
-                activity.dismissDialog()
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while registering the user.",
-                    e
-                )
+
+            is AdminRegistrationActivity -> {
+                //create or add to the same collection as given in FireStore
+                fireStore.collection("Users")
+                    //Document by unique ID of each user
+                    .document(user.id).set(user, SetOptions.merge())
+                    .addOnSuccessListener {
+
+                        // Here call a function of base activity for transferring the result to it.
+                        activity.userRegistrationSuccess()
+                    }
+                    .addOnFailureListener { e ->
+                        activity.dismissDialog()
+                        Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while registering the Admin.",
+                            e
+                        )
+                    }
             }
+        }
+
     }
 
 
@@ -229,6 +248,11 @@ class FirestoreClass {
                         // Call a function of base activity for transferring the result to it.
                         activity.userDetailsSuccess(user)
                     }
+
+                    is ClientShoppingActivity -> {
+                        activity.setUserType(user.type)
+
+                    }
                 }
             }
             .addOnFailureListener { e ->
@@ -238,6 +262,9 @@ class FirestoreClass {
                         activity.dismissDialog()
                     }
                     is SettingsActivity -> {
+                        activity.dismissDialog()
+                    }
+                    is ClientShoppingActivity -> {
                         activity.dismissDialog()
                     }
                 }
