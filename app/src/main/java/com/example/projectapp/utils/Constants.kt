@@ -13,12 +13,12 @@ object Constants {
 
     // Firebase Constants
     // This is used for the collection name for USERS.
-    const val USERS: String = "users"
+    const val USERS: String = "Users"
     const val PRODUCTS: String = "Products"
-    const val CART_ITEMS: String = "cart_items"
-    const val ADDRESSES: String = "addresses"
-    const val ORDERS: String = "orders"
-    const val SOLD_PRODUCTS: String = "sold_products"
+    const val CART_ITEMS: String = "Cart_Items"
+    const val ADDRESSES: String = "Addresses"
+    const val ORDERS: String = "Orders"
+    const val SOLD_PRODUCTS: String = "Sold_Products"
 
     const val MYSHOPPAL_PREFERENCES: String = "MyShopPalPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"

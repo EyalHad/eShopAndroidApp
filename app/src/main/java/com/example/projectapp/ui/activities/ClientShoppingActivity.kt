@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.MenuItem
+
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -39,12 +41,25 @@ class ClientShoppingActivity : BaseActivity() {
             when(it.itemId){
                 R.id.nav_home -> Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
                 R.id.nav_my_orders -> Toast.makeText(this, "My Orders Clicked!", Toast.LENGTH_SHORT).show()
-                R.id.nav_settings -> Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
-                R.id.nav_edit_profile -> Toast.makeText(this, "Edit Profile Clicked!", Toast.LENGTH_SHORT).show()
-                R.id.nav_login -> startActivity(Intent(this, SignInActivity::class.java))
-                R.id.nav_admin -> {
-                    admin()
+                R.id.nav_settings -> {
+                    Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,SettingsActivity::class.java))
                 }
+
+                R.id.nav_login ->{
+                    FirebaseAuth.getInstance().signOut()
+                    startActivity(Intent(this, SignInActivity::class.java))
+                }
+
+                R.id.nav_admin -> startActivity(Intent(this, DashboardActivity::class.java))
+
+//                {
+//                    start
+//                    val type : Int = FirestoreClass().checkIfAdmin()
+//                    if(type.equals(0)){
+//                        Toast.makeText(this, "Not an Admin!", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
 
             }
             true
@@ -62,35 +77,35 @@ class ClientShoppingActivity : BaseActivity() {
         doubleBackToExit()
     }
 
-    private fun admin() {
-        val email: String = findViewById<EditText>(R.id.signIn_Email).text.toString().trim() //email field
-        val password: String = findViewById<EditText>(R.id.signIn_Pass).text.toString().trim() //password field
-        //if the credentials are legit
-        if (validateForm(email, password)) {
-            showProgressDialog(R.string.wait.toString())
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(ContentValues.TAG, "Admin:success")
-                        Toast.makeText(
-                            baseContext, "Authentication succeed!.",
-                            Toast.LENGTH_SHORT).show()
-
-                        startActivity(Intent(this, DashboardActivity::class.java))
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.d(ContentValues.TAG, "signInWithEmail:fail")
-                        Toast.makeText(
-                            baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                    }
-
-                }
-        }
-    }
+//    private fun admin() {
+//        val email: String = findViewById<EditText>(R.id.signIn_Email).text.toString().trim() //email field
+//        val password: String = findViewById<EditText>(R.id.signIn_Pass).text.toString().trim() //password field
+//        //if the credentials are legit
+//        if (validateForm(email, password)) {
+//            showProgressDialog(R.string.wait.toString())
+//            auth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this) { task ->
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//                        Log.d(ContentValues.TAG, "Admin:success")
+//                        Toast.makeText(
+//                            baseContext, "Authentication succeed!.",
+//                            Toast.LENGTH_SHORT).show()
+//
+//                        startActivity(Intent(this, DashboardActivity::class.java))
+//                    } else {
+//                        // If sign in fails, display a message to the user.
+//                        Log.d(ContentValues.TAG, "signInWithEmail:fail")
+//                        Toast.makeText(
+//                            baseContext, "Authentication failed.",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//
+//                    }
+//
+//                }
+//        }
+//    }
 
     private fun validateForm( email:String, password:String ): Boolean {
         return when {
@@ -107,6 +122,8 @@ class ClientShoppingActivity : BaseActivity() {
             }
         }
     }
+
+
 
 
 }

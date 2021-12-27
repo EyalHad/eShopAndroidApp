@@ -25,13 +25,14 @@ class ForgotPasswordActivity : BaseActivity() {
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_forgot_password)
 
+        setupActionBar()
 
-        val buttonSubmit = findViewById<ImageButton>(R.id.buttonSend)
-        buttonSubmit.setOnClickListener {
+
+        btn_submit.setOnClickListener {
 
             // Get the email id from the input field.
-            //val email: String = R.id.reset_email.text.toString().trim { it <= ' ' }
-            val email: String = findViewById<EditText>(R.id.reset_email).text.toString().trim()
+            val email: String = et_email.text.toString().trim { it <= ' ' }
+
             // Now, If the email entered in blank then show the error message or else continue with the implemented feature.
             if (email.isEmpty()) {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
@@ -45,7 +46,8 @@ class ForgotPasswordActivity : BaseActivity() {
                     .addOnCompleteListener { task ->
 
                         // Hide the progress dialog
-                       // hideProgressDialog()
+                        dismissDialog()
+
                         if (task.isSuccessful) {
                             // Show the toast message and finish the forgot password activity to go back to the login screen.
                             Toast.makeText(
@@ -61,6 +63,23 @@ class ForgotPasswordActivity : BaseActivity() {
                     }
             }
         }
+
+    }
+
+    /**
+     * A function for actionBar Setup.
+     */
+    private fun setupActionBar() {
+
+        setSupportActionBar(toolbar_forgot_password_activity)
+
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_white_24)
+        }
+
+        toolbar_forgot_password_activity.setNavigationOnClickListener { onBackPressed() }
     }
 }
 

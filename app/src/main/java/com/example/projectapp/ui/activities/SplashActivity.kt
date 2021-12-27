@@ -1,11 +1,13 @@
 package com.example.projectapp.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.example.projectapp.R
 
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
@@ -17,7 +19,7 @@ class SplashActivity : BaseActivity() {
 
         //This is used in order to move to the next activity, after fixed time
         //START
-        Handler().postDelayed({startActivity(Intent(this, IntroActivity::class.java))
+        Handler().postDelayed({startActivity(Intent(this, SignInActivity::class.java))
                               finish()}, //User won't be able to return to splash screen
             2500)
     }

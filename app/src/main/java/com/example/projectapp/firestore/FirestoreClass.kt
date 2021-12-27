@@ -6,43 +6,80 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
-import android.webkit.MimeTypeMap
-import android.widget.Toast
-import android.widget.Toast.makeText
-import com.example.projectapp.ui.activities.AddProductActivity
-import com.example.projectapp.ui.activities.SignUpActivity
+import com.example.projectapp.models.Address
 import com.example.projectapp.models.Product
 import com.example.projectapp.models.User
+import com.example.projectapp.ui.activities.*
 import com.example.projectapp.utils.Constants
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.*
 
-
 class FirestoreClass {
 
-    private val mFireStore = FirebaseFirestore.getInstance()
+    private val fireStore = FirebaseFirestore.getInstance()
     private lateinit var mAuth : FirebaseAuth
     private lateinit var mDatabase : DatabaseReference
     private lateinit var user : com.google.firebase.firestore.auth.User
 
+    /** ------------------- Authentication Area ----------------------------------------------------------------------------*/
+    /** -------------------                     -------------------*/
+//    fun checkIfAdmin() : Int{
+//        var type:Int = 0
+//        fireStore.collection("users").get().addOnCompleteListener(){
+//            if(it.isSuccessful){
+//                for (doc in it.result!!){
+//                    type = doc.data
+//                        .getValue("type") as Int
+//                }
+//            }
+//        }
+//        return type
+//    }
+
+    /**
+     * A function to get the user id of current logged user.
+     */
+    fun getCurrentUserID(): String {
+        // An Instance of currentUser using FirebaseAuth
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        // A variable to assign the currentUserId if it is not null or else it will be blank.
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+
+        return currentUserID
+    }
+
     fun registerUser(activity: SignUpActivity, user: User) {
         //create or add to the same collection as given in FireStore
-        mFireStore.collection("users")
+        fireStore.collection("Users")
             //Document by unique ID of each user
-            .document(user.getId()).set(user, SetOptions.merge())
+            .document(user.id).set(user, SetOptions.merge())
             .addOnSuccessListener {
 
+                // Here call a function of base activity for transferring the result to it.
+                activity.userRegistrationSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.dismissDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while registering the user.",
+                    e
+                )
             }
     }
+
+
+    /** -------------------  Image Upload  ----------------------------------------------------------------------------*/
+
 
     fun uploadImageToCloudStorage(activity: Activity, imageFileUri: Uri?, imageType: String) {
 
@@ -75,6 +112,10 @@ class FirestoreClass {
                             is AddProductActivity -> {
                                 activity.imageUploadSuccess(uri.toString())
                             }
+
+                            is UserProfileActivity -> {
+                                activity.imageUploadSuccess(uri.toString())
+                            }
                         }
                     }
             }
@@ -97,8 +138,10 @@ class FirestoreClass {
             }
     }
 
+    /** -------------------  Product Details ----------------------------------------------------------------------------*/
+
     fun uploadProductDetails(activity: AddProductActivity, productInfo: Product) {
-        mFireStore.collection(Constants.PRODUCTS)
+        fireStore.collection(Constants.PRODUCTS)
             .document()
             .set(productInfo, SetOptions.merge())
             .addOnSuccessListener {
@@ -116,32 +159,219 @@ class FirestoreClass {
             }
     }
 
+
+
+    /** -------------------  User Details ----------------------------------------------------------------------------*/
+
+
     /**
-     * Returns if current user is of admin type.
+     * A function to update the user profile data into the database.
+     *
+     * @param activity The activity is used for identifying the Base activity to which the result is passed.
+     * @param userHashMap HashMap of fields which are to be updated.
      */
-//   fun checkIfAdmin() : User? {
-//        val f = mAuth.currentUser
-//    }
+    fun updateUserProfileData(activity: Activity, userHashMap: HashMap<String, Any>) {
+        // Collection Name
+        fireStore.collection(Constants.USERS)
+            // Document ID against which the data to be updated. Here the document id is the current logged in user id.
+            .document(getCurrentUserID())
+            // A HashMap of fields which are to be updated.
+            .update(userHashMap)
+            .addOnSuccessListener {
 
-
-    fun returnUser(): User? {
-        val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        var ob : User? = null
-        uid.let {
-            val docRef = mFireStore.collection("users").document(uid).get()
-            docRef.addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                     ob = document.toObject(User::class.java)
-                } else {
-                    Log.d(TAG, "No such document")
+                // Notify the success result.
+                when (activity) {
+                    is UserProfileActivity -> {
+                        // Call a function of base activity for transferring the result to it.
+                        activity.userProfileUpdateSuccess()
+                    }
                 }
             }
-                .addOnFailureListener { exception ->
-                    Log.d(TAG, "get failed with ", exception)
+            .addOnFailureListener { e ->
+
+                when (activity) {
+                    is UserProfileActivity -> {
+                        // Hide the progress dialog if there is any error. And print the error in log.
+                        activity.dismissDialog()
+                    }
                 }
-        }
-        return ob
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating the user details.",
+                    e
+                )
+            }
     }
 
+    /**
+     * A function to get the logged user details from from FireStore Database.
+     */
+    fun getUserDetails(activity: Activity) {
+
+        // Here we pass the collection name from which we wants the data.
+        fireStore.collection(Constants.USERS)
+            // The document id to get the Fields of user.
+            .document(getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+
+                Log.i(activity.javaClass.simpleName, document.toString())
+
+                // Here we have received the document snapshot which is converted into the User Data model object.
+                val user = document.toObject(User::class.java)!!
+
+
+                when (activity) {
+                    is SignInActivity -> {
+                        // Call a function of base activity for transferring the result to it.
+                        activity.userLoggedInSuccess(user)
+                    }
+
+                    is SettingsActivity -> {
+                        // Call a function of base activity for transferring the result to it.
+                        activity.userDetailsSuccess(user)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                // Hide the progress dialog if there is any error. And print the error in log.
+                when (activity) {
+                    is SignInActivity -> {
+                        activity.dismissDialog()
+                    }
+                    is SettingsActivity -> {
+                        activity.dismissDialog()
+                    }
+                }
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while getting user details.",
+                    e
+                )
+            }
+    }
+
+
+
+    /** -------------------  Address Details ----------------------------------------------------------------------------*/
+
+    /**
+     * A function to add address to the cloud firestore.
+     *
+     * @param activity
+     * @param addressInfo
+     */
+    fun addAddress(activity: AddEditAddressActivity, addressInfo: Address) {
+
+        // Collection name address.
+        fireStore.collection(Constants.ADDRESSES)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.addUpdateAddressSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.dismissDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while adding the address.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to update the existing address to the cloud firestore.
+     *
+     * @param activity Base class
+     * @param addressInfo Which fields are to be updated.
+     * @param addressId existing address id
+     */
+    fun updateAddress(activity: AddEditAddressActivity, addressInfo: Address, addressId: String) {
+
+        fireStore.collection(Constants.ADDRESSES)
+            .document(addressId)
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.addUpdateAddressSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.dismissDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating the Address.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to delete the existing address from the cloud firestore.
+     *
+     * @param activity Base class
+     * @param addressId existing address id
+     */
+    fun deleteAddress(activity: AddressListActivity, addressId: String) {
+
+        fireStore.collection(Constants.ADDRESSES)
+            .document(addressId)
+            .delete()
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.deleteAddressSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.dismissDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while deleting the address.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to get the list of address from the cloud firestore.
+     *
+     * @param activity
+     */
+    fun getAddressesList(activity: AddressListActivity) {
+        // The collection name for PRODUCTS
+        fireStore.collection(Constants.ADDRESSES)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                // Here we get the list of boards in the form of documents.
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+                // Here we have created a new instance for address ArrayList.
+                val addressList: ArrayList<Address> = ArrayList()
+
+                // A for loop as per the list of documents to convert them into Boards ArrayList.
+                for (i in document.documents) {
+
+                    val address = i.toObject(Address::class.java)!!
+                    address.id = i.id
+
+                    addressList.add(address)
+                }
+
+                activity.successAddressListFromFirestore(addressList)
+            }
+            .addOnFailureListener { e ->
+                // Here call a function of base activity for transferring the result to it.
+
+                activity.dismissDialog()
+
+                Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
+            }
+    }
 }

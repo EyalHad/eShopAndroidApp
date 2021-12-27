@@ -5,78 +5,141 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.widget.Button
+import android.view.View
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import com.example.projectapp.R
+import com.example.projectapp.firestore.FirestoreClass
+import com.example.projectapp.models.User
+import com.example.projectapp.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_sign_in.*
 
-class SignInActivity : BaseActivity() {
-    private lateinit var auth: FirebaseAuth
+
+@Suppress("DEPRECATION")
+class SignInActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //This call the parent constructor
         super.onCreate(savedInstanceState)
+        // This is used to align the xml view to this class
         setContentView(R.layout.activity_sign_in)
-        auth = FirebaseAuth.getInstance()
-        val btn = findViewById<ImageButton>(R.id.loginsighin)
-        val btn2sighup = findViewById<ImageButton>(R.id.button_barsignin)
-        val btnback = findViewById<ImageButton>(R.id.login_return)
-//        val btnforgot : Button = findViewById(R.id.forgotpss)
-       // var btn : Button = findViewById(R.id.signIn_Button) //sign-in button
-        btn.setOnClickListener { signIn() }
-        //turn to the signup area
-        btn2sighup.setOnClickListener { startActivity(Intent(this, SignUpActivity::class.java))}
-        btnback.setOnClickListener { finish() }
-//        btnforgot.setOnClickListener {
-//            startActivity(Intent(this, ForgotPasswordActivity::class.java))}
+
+
+        // This is used to hide the status bar and make the login screen as a full screen activity.
+        // It is deprecated in the API level 30. I will update you with the alternate solution soon.
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
+        // Click event assigned to Forgot Password text.
+        tv_forgot_password.setOnClickListener(this)
+        // Click event assigned to Login button.
+        btn_login.setOnClickListener(this)
+        // Click event assigned to Register text.
+        tv_register.setOnClickListener(this)
 
 
 
     }
 
-    private fun signIn() {
-        val email: String = findViewById<EditText>(R.id.signIn_Email).text.toString().trim() //email field
-        val password: String = findViewById<EditText>(R.id.signIn_Pass).text.toString().trim() //password field
-        //if the credentials are legit
-        if (validateForm(email, password)) {
-            showProgressDialog(R.string.wait.toString())
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
-                        Toast.makeText(
-                            baseContext, "Authentication succeed!.",
-                            Toast.LENGTH_SHORT).show()
 
-                        startActivity(Intent(this, ClientShoppingActivity::class.java))
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.d(TAG, "signInWithEmail:fail")
-                        Toast.makeText(
-                            baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                    }
-
-                }
-        }
-    }
-
-    private fun validateForm( email:String, password:String ): Boolean {
+    /**
+     * A function to validate the login entries of a user.
+     */
+    private fun validateLoginDetails(): Boolean {
         return when {
-            TextUtils.isEmpty(email) -> {
-                showErrorSnackBar("Please enter email address",true)
+            TextUtils.isEmpty(et_email.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false
             }
-            TextUtils.isEmpty(password) -> {
-                showErrorSnackBar("Please enter a password",true)
+            TextUtils.isEmpty(et_password.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password), true)
                 false
             }
             else -> {
                 true
+            }
+        }
+    }
+
+    /**
+     * A function to notify user that logged in success and get the user details from the FireStore database after authentication.
+     */
+    fun userLoggedInSuccess(user: User) {
+
+        // Hide the progress dialog.
+        dismissDialog()
+
+        if (user.profileCompleted == 0) {
+            // If the user profile is incomplete then launch the UserProfileActivity.
+            val intent = Intent(this@SignInActivity, UserProfileActivity::class.java)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
+            startActivity(intent)
+        } else {
+            // Redirect the user to Dashboard Screen after log in.
+            startActivity(Intent(this@SignInActivity, ClientShoppingActivity::class.java))
+        }
+        finish()
+    }
+
+    /**
+     * A function to Log-In. The user will be able to log in using the registered email and password with Firebase Authentication.
+     */
+    private fun logInRegisteredUser() {
+
+        if (validateLoginDetails()) {
+
+            // Show the progress dialog.
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            // Get the text from editText and trim the space
+            val email = et_email.text.toString().trim { it <= ' ' }
+            val password = et_password.text.toString().trim { it <= ' ' }
+
+            // Log-In using FirebaseAuth
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+
+                    if (task.isSuccessful) {
+                        FirestoreClass().getUserDetails(this@SignInActivity)
+                    } else {
+                        // Hide the progress dialog
+                        dismissDialog()
+                        showErrorSnackBar(task.exception!!.message.toString(), true)
+                    }
+                }
+        }
+    }
+
+    /**
+     * In Login screen the clickable components are Login Button, ForgotPassword text and Register Text.
+     */
+    override fun onClick(v: View?) {
+        if (v != null) {
+            when (v.id) {
+
+                R.id.tv_forgot_password -> {
+
+                    // Launch the forgot password screen when the user clicks on the forgot password text.
+                    val intent = Intent(this@SignInActivity, ForgotPasswordActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.btn_login -> {
+
+                    logInRegisteredUser()
+                }
+
+                R.id.tv_register -> {
+                    // Launch the register screen when the user clicks on the text.
+                    val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }

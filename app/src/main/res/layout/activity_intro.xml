@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.projectapp.ui.activities.IntroActivity"
     android:id="@+id/intro"
-android:background="@drawable/background">
+
+    android:background="@drawable/logotextscreen">
+
 
 
     <TextView
@@ -69,59 +71,59 @@ android:background="@drawable/background">
 
 
     <!--    <Button-->
-<!--        android:id="@+id/sighinIntro"-->
-<!--        android:layout_width="186dp"-->
-<!--        android:layout_height="55dp"-->
-<!--        android:text="SighUp"-->
-<!--        android:fontFamily="@font/regular"-->
-<!--        android:textSize="25sp"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="@drawable/button_text_color"-->
-<!--        android:backgroundTint="@drawable/loginbutton"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.183"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.366" />-->
+    <!--        android:id="@+id/sighinIntro"-->
+    <!--        android:layout_width="186dp"-->
+    <!--        android:layout_height="55dp"-->
+    <!--        android:text="SighUp"-->
+    <!--        android:fontFamily="@font/regular"-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        android:textColor="@drawable/button_text_color"-->
+    <!--        android:backgroundTint="@drawable/loginbutton"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.183"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.366" />-->
 
 
     <!--    <Button-->
-<!--        android:id="@+id/intro_signInButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="30dp"-->
-<!--        android:layout_marginRight="30dp"-->
-<!--        android:layout_marginBottom="30dp"-->
-<!--        android:background="@drawable/white_shape_button_rounded"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:orientation="vertical"-->
-<!--        android:text="Sign In"-->
-<!--        android:textSize="25sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:padding="5dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        tools:ignore="MissingConstraints"></Button>-->
+    <!--        android:id="@+id/intro_signInButton"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="30dp"-->
+    <!--        android:layout_marginRight="30dp"-->
+    <!--        android:layout_marginBottom="30dp"-->
+    <!--        android:background="@drawable/white_shape_button_rounded"-->
+    <!--        android:gravity="center_horizontal"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:text="Sign In"-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:padding="5dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        tools:ignore="MissingConstraints"></Button>-->
 
-<!--    <Button-->
-<!--        android:id="@+id/intro_signUpButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="30dp"-->
-<!--        android:layout_marginRight="30dp"-->
-<!--        android:layout_marginBottom="30dp"-->
-<!--        android:padding="5dp"-->
-<!--        android:background="@drawable/shape_button_rounded"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:orientation="vertical"-->
-<!--        android:text="Sign Up"-->
-<!--        android:textSize="25sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/intro_signInButton"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"></Button>-->
+    <!--    <Button-->
+    <!--        android:id="@+id/intro_signUpButton"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="30dp"-->
+    <!--        android:layout_marginRight="30dp"-->
+    <!--        android:layout_marginBottom="30dp"-->
+    <!--        android:padding="5dp"-->
+    <!--        android:background="@drawable/shape_button_rounded"-->
+    <!--        android:gravity="center_horizontal"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:text="Sign Up"-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/intro_signInButton"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"></Button>-->
 
 
 
