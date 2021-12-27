@@ -9,6 +9,8 @@ import com.example.projectapp.firestore.FirestoreClass
 import com.example.projectapp.models.Address
 import com.example.projectapp.utils.Constants
 import kotlinx.android.synthetic.main.activity_add_edit_address.*
+import kotlinx.android.synthetic.main.activity_add_edit_address.tv_title
+import kotlinx.android.synthetic.main.activity_sign_in.*
 
 /**
  * Add edit address screen.
@@ -56,18 +58,20 @@ class AddEditAddressActivity : BaseActivity() {
                     }
                     else -> {
                         rb_other.isChecked = true
-                        til_other_details.visibility = View.VISIBLE
-//                        et_other_details.setText(mAddressDetails?.otherDetails)
+
                     }
                 }
             }
         }
 
         rg_type.setOnCheckedChangeListener { _, checkedId ->
-            if (checkedId == R.id.rb_other) {
-                til_other_details.visibility = View.VISIBLE
-            } else {
-                til_other_details.visibility = View.GONE
+
+            when(checkedId == R.id.rb_other)
+            {
+                TextUtils.isEmpty(et_additional_note.text.toString().trim { it <= ' ' }) -> {
+                    showErrorSnackBar("You Should Provide Additional Note ", true)
+                    false
+                }
             }
         }
 
@@ -116,17 +120,17 @@ class AddEditAddressActivity : BaseActivity() {
             }
 
             TextUtils.isEmpty(et_city.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_please_enter_address), true)
+                showErrorSnackBar("You must provide City in the Address", true)
                 false
             }
 
             TextUtils.isEmpty(et_street.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_please_enter_address), true)
+                showErrorSnackBar("Street field cannot be left empty", true)
                 false
             }
 
             TextUtils.isEmpty(et_house_number.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_please_enter_address), true)
+                showErrorSnackBar("You Should Provide Address Number", true)
                 false
             }
 
@@ -136,8 +140,8 @@ class AddEditAddressActivity : BaseActivity() {
             }
 
             rb_other.isChecked && TextUtils.isEmpty(
-                et_zip_code.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_please_enter_zip_code), true)
+                et_additional_note.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar("Please Provide Additional Note - You chose Other, ", true)
                 false
             }
             else -> {
@@ -159,7 +163,6 @@ class AddEditAddressActivity : BaseActivity() {
         val houseNumber: String = et_house_number.text.toString().trim { it <= ' ' }
         val zipCode: String = et_zip_code.text.toString().trim { it <= ' ' }
         val additionalNote: String = et_additional_note.text.toString().trim { it <= ' ' }
-        val otherDetails: String = et_other_details.text.toString().trim { it <= ' ' }
 
         if (validateData()) {
 
@@ -186,7 +189,7 @@ class AddEditAddressActivity : BaseActivity() {
                 zipCode,
                 additionalNote,
                 addressType,
-                otherDetails
+
             )
 
             if (addressDetails != null && addressDetails!!.id.isNotEmpty()) {

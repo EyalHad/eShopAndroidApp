@@ -21,6 +21,6 @@ data class Address(
     val additionalNote: String = "",
 
     val type: String = "",
-    val id: String = "",
+    var id: String = "",
 
 ) : Parcelable

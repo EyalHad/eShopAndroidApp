@@ -10,7 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
 import com.google.android.material.navigation.NavigationView
-
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ClientShoppingActivity : BaseActivity() {
@@ -38,7 +38,11 @@ class ClientShoppingActivity : BaseActivity() {
                     startActivity(Intent(this,SettingsActivity::class.java))
                 }
 
-                R.id.nav_login -> startActivity(Intent(this, SignInActivity::class.java))
+                R.id.nav_login ->{
+                    FirebaseAuth.getInstance().signOut()
+                    startActivity(Intent(this, SignInActivity::class.java))
+                }
+
                 R.id.nav_admin -> startActivity(Intent(this, DashboardActivity::class.java))
 
 //                {

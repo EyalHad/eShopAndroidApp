@@ -23,6 +23,21 @@ class FirestoreClass {
     private lateinit var mDatabase : DatabaseReference
     private lateinit var user : com.google.firebase.firestore.auth.User
 
+    /** ------------------- Authentication Area ----------------------------------------------------------------------------*/
+    /** -------------------                     -------------------*/
+//    fun checkIfAdmin() : Int{
+//        var type:Int = 0
+//        fireStore.collection("users").get().addOnCompleteListener(){
+//            if(it.isSuccessful){
+//                for (doc in it.result!!){
+//                    type = doc.data
+//                        .getValue("type") as Int
+//                }
+//            }
+//        }
+//        return type
+//    }
+
     /**
      * A function to get the user id of current logged user.
      */
@@ -58,6 +73,10 @@ class FirestoreClass {
                 )
             }
     }
+
+
+    /** -------------------  Image Upload  ----------------------------------------------------------------------------*/
+
 
     fun uploadImageToCloudStorage(activity: Activity, imageFileUri: Uri?, imageType: String) {
 
@@ -116,6 +135,8 @@ class FirestoreClass {
             }
     }
 
+    /** -------------------  Product Details ----------------------------------------------------------------------------*/
+
     fun uploadProductDetails(activity: AddProductActivity, productInfo: Product) {
         fireStore.collection(Constants.PRODUCTS)
             .document()
@@ -135,18 +156,9 @@ class FirestoreClass {
             }
     }
 
-    fun checkIfAdmin() : Int{
-        var type:Int = 0
-        fireStore.collection("users").get().addOnCompleteListener(){
-            if(it.isSuccessful){
-                for (doc in it.result!!){
-                    type = doc.data
-                        .getValue("type") as Int
-                }
-            }
-        }
-        return type
-    }
+
+
+    /** -------------------  User Details ----------------------------------------------------------------------------*/
 
 
     /**
@@ -238,6 +250,10 @@ class FirestoreClass {
             }
     }
 
+
+
+    /** -------------------  Address Details ----------------------------------------------------------------------------*/
+
     /**
      * A function to add address to the cloud firestore.
      *
@@ -266,7 +282,6 @@ class FirestoreClass {
             }
     }
 
-
     /**
      * A function to update the existing address to the cloud firestore.
      *
@@ -292,6 +307,68 @@ class FirestoreClass {
                     "Error while updating the Address.",
                     e
                 )
+            }
+    }
+
+    /**
+     * A function to delete the existing address from the cloud firestore.
+     *
+     * @param activity Base class
+     * @param addressId existing address id
+     */
+    fun deleteAddress(activity: AddressListActivity, addressId: String) {
+
+        fireStore.collection(Constants.ADDRESSES)
+            .document(addressId)
+            .delete()
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.deleteAddressSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.dismissDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while deleting the address.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to get the list of address from the cloud firestore.
+     *
+     * @param activity
+     */
+    fun getAddressesList(activity: AddressListActivity) {
+        // The collection name for PRODUCTS
+        fireStore.collection(Constants.ADDRESSES)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                // Here we get the list of boards in the form of documents.
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+                // Here we have created a new instance for address ArrayList.
+                val addressList: ArrayList<Address> = ArrayList()
+
+                // A for loop as per the list of documents to convert them into Boards ArrayList.
+                for (i in document.documents) {
+
+                    val address = i.toObject(Address::class.java)!!
+                    address.id = i.id
+
+                    addressList.add(address)
+                }
+
+                activity.successAddressListFromFirestore(addressList)
+            }
+            .addOnFailureListener { e ->
+                // Here call a function of base activity for transferring the result to it.
+
+                activity.dismissDialog()
+
+                Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
             }
     }
 
