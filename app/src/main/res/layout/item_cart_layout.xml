@@ -65,21 +65,4 @@
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         />
-    <com.example.projectapp.utils.MSPButton
-        android:id="@+id/btn_buy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_background"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:paddingTop="@dimen/btn_padding"
-        android:paddingBottom="@dimen/btn_padding"
-        android:text="add to cart"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/btn_textSize"
-         />
 </LinearLayout>
