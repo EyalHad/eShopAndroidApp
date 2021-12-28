@@ -56,6 +56,10 @@ class ClientShoppingActivity : BaseActivity() {
                     Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, ProductListActivity::class.java))
                 }
+                R.id.nav_my_cart -> {
+                    Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, CartListActivity::class.java))
+                }
 
                 R.id.nav_login -> {
                     FirebaseAuth.getInstance().signOut()

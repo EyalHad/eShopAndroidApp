@@ -11,6 +11,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
 import com.example.projectapp.models.User
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 @Suppress("DEPRECATION")
@@ -121,6 +123,7 @@ class SignUpActivity : BaseActivity() {
      * A function to register the user with email and password using FirebaseAuth.
      */
     private fun registerUser() {
+        //create cart for him
 
         // Check with validate function if the entries are valid or not.
         if (validateRegisterDetails()) {
@@ -131,6 +134,8 @@ class SignUpActivity : BaseActivity() {
             val email: String = et_email.text.toString().trim { it <= ' ' }
             val password: String = et_password.text.toString().trim { it <= ' ' }
 
+
+            btn_add_to_cart(email)
             // Create an instance and create a register a user with email and password.
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
@@ -163,6 +168,21 @@ class SignUpActivity : BaseActivity() {
                         }
                     })
         }
+    }
+
+    private fun btn_add_to_cart(email: String) {
+        val db = FirebaseFirestore.getInstance()
+        val add = HashMap<String,Any>()
+        add["firstName"] = "your first name"
+        db.collection(email)
+            .add(add)
+            .addOnSuccessListener {
+                Toast.makeText(this,"Data added ",Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this," Data not added ",Toast.LENGTH_LONG).show()
+            }
+
     }
 
     /**
