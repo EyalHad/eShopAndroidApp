@@ -433,25 +433,25 @@ class FirestoreClass {
                 Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
             }
     }
-    fun deleteProduct(activity: ProductListActivity, addressId: String) {
-
-        fireStore.collection(Constants.ADDRESSES)
-            .document(addressId)
-            .delete()
-            .addOnSuccessListener {
-
-                // Here call a function of base activity for transferring the result to it.
-                activity.deleteAddressSuccess()
-            }
-            .addOnFailureListener { e ->
-                activity.dismissDialog()
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while deleting the address.",
-                    e
-                )
-            }
-    }
+//    fun deleteProduct(activity: ProductListActivity, addressId: String) {
+//
+//        fireStore.collection(Constants.ADDRESSES)
+//            .document(addressId)
+//            .delete()
+//            .addOnSuccessListener {
+//
+//                // Here call a function of base activity for transferring the result to it.
+//                activity.deleteAddressSuccess()
+//            }
+//            .addOnFailureListener { e ->
+//                activity.dismissDialog()
+//                Log.e(
+//                    activity.javaClass.simpleName,
+//                    "Error while deleting the address.",
+//                    e
+//                )
+//            }
+//    }
 
 
 
@@ -485,24 +485,24 @@ class FirestoreClass {
                 Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
             }
     }
-    fun deleteProduct(activity: CartListActivity, addressId: String) {
-
-        fireStore.collection(Constants.ADDRESSES)
-            .document(addressId)
-            .delete()
-            .addOnSuccessListener {
-
-                // Here call a function of base activity for transferring the result to it.
-                activity.deleteAddressSuccess()
-            }
-            .addOnFailureListener { e ->
-                activity.dismissDialog()
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while deleting the address.",
-                    e
-                )
-            }
-    }
+//    fun deleteProduct(activity: CartListActivity, addressId: String) {
+//
+//        fireStore.collection(Constants.ADDRESSES)
+//            .document(addressId)
+//            .delete()
+//            .addOnSuccessListener {
+//
+//                // Here call a function of base activity for transferring the result to it.
+//                activity.deleteAddressSuccess()
+//            }
+//            .addOnFailureListener { e ->
+//                activity.dismissDialog()
+//                Log.e(
+//                    activity.javaClass.simpleName,
+//                    "Error while deleting the address.",
+//                    e
+//                )
+//            }
+//    }
 
 }

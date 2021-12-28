@@ -13,7 +13,6 @@ import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
 import com.example.projectapp.models.Address
 import com.example.projectapp.ui.adapters.AddressListAdapter
-import com.example.projectapp.ui.adapters.ProductsListAdapter
 import com.example.projectapp.utils.Constants
 import com.example.projectapp.utils.SwipeToDeleteCallback
 import com.example.projectapp.utils.SwipeToEditCallback
@@ -134,7 +133,7 @@ class AddressListActivity : BaseActivity() {
                 val editSwipeHandler = object : SwipeToEditCallback(this) {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-                        val adapter = rv_address_list.adapter as ProductsListAdapter
+                        val adapter = rv_address_list.adapter as AddressListAdapter
                         adapter.notifyEditItem(
                             this@AddressListActivity,
                             viewHolder.adapterPosition

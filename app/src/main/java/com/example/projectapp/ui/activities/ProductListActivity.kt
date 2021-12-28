@@ -137,24 +137,24 @@ class ProductListActivity : BaseActivity() {
                         )
                     }
                 }
-                val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
-                editItemTouchHelper.attachToRecyclerView(rv_address_list)
-
-
-                val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
-                        // Show the progress dialog.
-                        showProgressDialog(resources.getString(R.string.please_wait))
-
-                        FirestoreClass().deleteProduct(
-                            this@ProductListActivity,
-                            addressList[viewHolder.adapterPosition].title
-                        )
-                    }
-                }
-                val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
-                deleteItemTouchHelper.attachToRecyclerView(rv_address_list)
+//                val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
+//                editItemTouchHelper.attachToRecyclerView(rv_address_list)
+//
+//
+//                val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
+//                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//
+//                        // Show the progress dialog.
+//                        showProgressDialog(resources.getString(R.string.please_wait))
+//
+//                        FirestoreClass().deleteProduct(
+//                            this@ProductListActivity,
+//                            addressList[viewHolder.adapterPosition].title
+//                        )
+//                    }
+//                }
+//                val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
+//                deleteItemTouchHelper.attachToRecyclerView(rv_address_list)
             }
         } else {
             rv_address_list.visibility = View.GONE
@@ -162,20 +162,20 @@ class ProductListActivity : BaseActivity() {
         }
     }
 
-    /**
-     * A function notify the user that the address is deleted successfully.
-     */
-    fun deleteAddressSuccess() {
-
-        // Hide progress dialog.
-        dismissDialog()
-
-        Toast.makeText(
-            this@ProductListActivity,
-            resources.getString(R.string.err_your_address_deleted_successfully),
-            Toast.LENGTH_SHORT
-        ).show()
-
-        getAddressList()
-    }
+//    /**
+//     * A function notify the user that the address is deleted successfully.
+//     */
+//    fun deleteAddressSuccess() {
+//
+//        // Hide progress dialog.
+//        dismissDialog()
+//
+//        Toast.makeText(
+//            this@ProductListActivity,
+//            resources.getString(R.string.err_your_address_deleted_successfully),
+//            Toast.LENGTH_SHORT
+//        ).show()
+//
+//        getAddressList()
+//    }
 }
