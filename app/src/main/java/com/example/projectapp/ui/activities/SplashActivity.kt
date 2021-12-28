@@ -24,17 +24,17 @@ class SplashActivity : BaseActivity() {
             // If the user is logged in once and did not logged out manually from the app.
             // So, next time when the user is coming into the app user will be redirected to MainScreen.
             // If user is not logged in or logout manually then user will  be redirected to the Login screen as usual.
-
+            startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
             // Get the current logged in user id
-            val currentUserID = FirestoreClass().getCurrentUserID()
-
-            if (currentUserID.isNotEmpty()) {
-                // Launch ClientShopping screen.
-                startActivity(Intent(this@SplashActivity, ClientShoppingActivity::class.java))
-            } else {
-                // Launch the Login Activity
-                startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
-            }
+//            val currentUserID = FirestoreClass().getCurrentUserID()
+//
+//            if (currentUserID.isNotEmpty()) {
+//                // Launch ClientShopping screen.
+//                startActivity(Intent(this@SplashActivity, AdminRegistrationActivity::class.java))
+//            } else {
+//                // Launch the Login Activity
+//                startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
+//            }
                               finish()
                               }, //User won't be able to return to splash screen
             2500)
