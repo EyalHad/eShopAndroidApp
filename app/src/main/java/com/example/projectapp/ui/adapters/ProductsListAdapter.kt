@@ -76,12 +76,12 @@ open class ProductsListAdapter(
                 add_to_cart(model,1)
             }
             //for now dont suppport null image field
-            if(model.image=="") {
+
 
                 Glide.with(context)
                     .load(model.image)
                     .into(holder.itemView.image_product)
-            }
+
 
             if (selectAddress) {
                 holder.itemView.setOnClickListener {

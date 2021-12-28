@@ -26,6 +26,10 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name=".ui.activities.CheckOutActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".ui.activities.CartListActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -53,13 +57,12 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ProjectApp.NoActionBar" />
-        <activity
-            android:name=".ui.activities.StorageActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.activities.DashboardActivity"
             android:exported="false"
             android:label="@string/app_name" />
+
         <activity
             android:name=".ui.activities.SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

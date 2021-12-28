@@ -135,7 +135,7 @@ class SignUpActivity : BaseActivity() {
             val password: String = et_password.text.toString().trim { it <= ' ' }
 
 
-            btn_add_to_cart(email)
+            CreateCart(email)
             // Create an instance and create a register a user with email and password.
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
@@ -170,7 +170,7 @@ class SignUpActivity : BaseActivity() {
         }
     }
 
-    private fun btn_add_to_cart(email: String) {
+    private fun CreateCart(email: String) {
         val db = FirebaseFirestore.getInstance()
         val add = HashMap<String,Any>()
         add["firstName"] = "your first name"

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +33,8 @@ class CartListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart_list)
+        val signInBtn = findViewById<Button>(R.id.btn_checkout)
+        signInBtn.setOnClickListener {startActivity(Intent(this, CheckOutActivity::class.java))}
 
 
         if (intent.hasExtra(Constants.EXTRA_SELECT_ADDRESS)) {
@@ -132,31 +135,31 @@ class CartListActivity : BaseActivity() {
                 val editSwipeHandler = object : SwipeToEditCallback(this) {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-                        val adapter = rv_address_list.adapter as ProductsListAdapter
+                        val adapter = rv_address_list.adapter as CartListAdapter
                         adapter.notifyEditItem(
                             this@CartListActivity,
                             viewHolder.adapterPosition
                         )
                     }
                 }
-                val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
-                editItemTouchHelper.attachToRecyclerView(rv_address_list)
-
-
-                val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
-                        // Show the progress dialog.
-                        showProgressDialog(resources.getString(R.string.please_wait))
-
-                        FirestoreClass().deleteProduct(
-                            this@CartListActivity,
-                            addressList[viewHolder.adapterPosition].title
-                        )
-                    }
-                }
-                val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
-                deleteItemTouchHelper.attachToRecyclerView(rv_address_list)
+//                val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
+//                editItemTouchHelper.attachToRecyclerView(rv_address_list)
+//
+//
+//                val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
+//                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//
+//                        // Show the progress dialog.
+//                        showProgressDialog(resources.getString(R.string.please_wait))
+//
+//                        FirestoreClass().deleteProduct(
+//                            this@CartListActivity,
+//                            addressList[viewHolder.adapterPosition].title
+//                        )
+//                    }
+//                }
+//                val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
+//                deleteItemTouchHelper.attachToRecyclerView(rv_address_list)
             }
         } else {
             rv_address_list.visibility = View.GONE
@@ -164,20 +167,20 @@ class CartListActivity : BaseActivity() {
         }
     }
 
-    /**
-     * A function notify the user that the address is deleted successfully.
-     */
-    fun deleteAddressSuccess() {
-
-        // Hide progress dialog.
-        dismissDialog()
-
-        Toast.makeText(
-            this@CartListActivity,
-            resources.getString(R.string.err_your_address_deleted_successfully),
-            Toast.LENGTH_SHORT
-        ).show()
-
-        getAddressList()
-    }
+//    /**
+//     * A function notify the user that the address is deleted successfully.
+//     */
+//    fun deleteAddressSuccess() {
+//
+//        // Hide progress dialog.
+//        dismissDialog()
+//
+//        Toast.makeText(
+//            this@CartListActivity,
+//            resources.getString(R.string.err_your_address_deleted_successfully),
+//            Toast.LENGTH_SHORT
+//        ).show()
+//
+//        getAddressList()
+//    }
 }

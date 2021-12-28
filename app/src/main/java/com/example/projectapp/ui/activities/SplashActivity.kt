@@ -31,7 +31,7 @@ class SplashActivity : BaseActivity() {
 
             if (currentUserID.isNotEmpty()) {
                 // Launch ClientShopping screen.
-                startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
+                startActivity(Intent(this@SplashActivity, ClientShoppingActivity::class.java))
             } else {
                 // Launch the Login Activity
                 startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
