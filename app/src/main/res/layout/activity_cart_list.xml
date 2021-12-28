@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.CartListActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_address_list_activity"
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <TextView
             android:id="@+id/tv_title"
@@ -27,10 +29,29 @@
             android:textSize="@dimen/toolbar_title_text_size"
             android:textStyle="bold" />
 
+
     </androidx.appcompat.widget.Toolbar>
 
 
-
+    <com.example.projectapp.utils.MSPButton
+        android:id="@+id/btn_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_background"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingTop="@dimen/btn_padding"
+        android:paddingBottom="@dimen/btn_padding"
+        android:text="CheckOut"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/btn_textSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_address_list_activity" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_address_list"
         android:layout_width="0dp"
@@ -40,7 +61,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_no_address_found" />
+        app:layout_constraintTop_toBottomOf="@id/btn_checkout" />
 
     <com.example.projectapp.utils.MSPTextView
         android:id="@+id/tv_no_address_found"
