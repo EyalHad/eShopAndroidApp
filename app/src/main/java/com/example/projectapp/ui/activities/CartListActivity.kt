@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +33,8 @@ class CartListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart_list)
+        val signInBtn = findViewById<Button>(R.id.btn_checkout)
+        signInBtn.setOnClickListener {startActivity(Intent(this, CheckOutActivity::class.java))}
 
 
         if (intent.hasExtra(Constants.EXTRA_SELECT_ADDRESS)) {
