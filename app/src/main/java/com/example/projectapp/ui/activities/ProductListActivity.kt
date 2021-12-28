@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
-import com.example.projectapp.models.Address
-import com.example.projectapp.ui.adapters.AddressListAdapter
+import com.example.projectapp.models.Product
 import com.example.projectapp.ui.adapters.ProductsListAdapter
 import com.example.projectapp.utils.Constants
 import com.example.projectapp.utils.SwipeToDeleteCallback
@@ -23,32 +22,29 @@ import kotlinx.android.synthetic.main.activity_address_list.*
  * Address list screen.
  */
 
-class AddressListActivity : BaseActivity() {
+class ProductListActivity : BaseActivity() {
 
 
-    private var selectAddress: Boolean = false
+    private var selectProduct: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_address_list)
+        setContentView(R.layout.activity_product_list)
 
 
         if (intent.hasExtra(Constants.EXTRA_SELECT_ADDRESS)) {
-            selectAddress =
+            selectProduct =
                 intent.getBooleanExtra(Constants.EXTRA_SELECT_ADDRESS, false)
         }
 
         setupActionBar()
 
 
-        if (selectAddress) {
+        if (selectProduct) {
             tv_title.text = resources.getString(R.string.title_select_address)
         }
 
-        tv_add_address.setOnClickListener {
-            val intent = Intent(this@AddressListActivity, AddEditAddressActivity::class.java)
-            startActivityForResult(intent, Constants.ADD_ADDRESS_REQUEST_CODE)
-        }
+
 
         getAddressList()
 
@@ -106,7 +102,7 @@ class AddressListActivity : BaseActivity() {
         // Show the progress dialog.
         showProgressDialog(resources.getString(R.string.please_wait))
 
-        FirestoreClass().getAddressesList(this@AddressListActivity)
+        FirestoreClass().getProductsList(this@ProductListActivity)
     }
 
     /**
@@ -114,7 +110,7 @@ class AddressListActivity : BaseActivity() {
      *
      * @param addressList
      */
-    fun successAddressListFromFirestore(addressList: ArrayList<Address>) {
+    fun successAddressListFromFirestore(addressList: ArrayList<Product>) {
 
         // Hide the progress dialog
         dismissDialog()
@@ -124,19 +120,19 @@ class AddressListActivity : BaseActivity() {
             rv_address_list.visibility = View.VISIBLE
             tv_no_address_found.visibility = View.GONE
 
-            rv_address_list.layoutManager = LinearLayoutManager(this@AddressListActivity)
+            rv_address_list.layoutManager = LinearLayoutManager(this@ProductListActivity)
             rv_address_list.setHasFixedSize(true)
 
-            val addressAdapter = AddressListAdapter(this@AddressListActivity, addressList, selectAddress)
+            val addressAdapter = ProductsListAdapter(this@ProductListActivity, addressList, selectProduct)
             rv_address_list.adapter = addressAdapter
 
-            if (!selectAddress) {
+            if (!selectProduct) {
                 val editSwipeHandler = object : SwipeToEditCallback(this) {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                         val adapter = rv_address_list.adapter as ProductsListAdapter
                         adapter.notifyEditItem(
-                            this@AddressListActivity,
+                            this@ProductListActivity,
                             viewHolder.adapterPosition
                         )
                     }
@@ -151,9 +147,9 @@ class AddressListActivity : BaseActivity() {
                         // Show the progress dialog.
                         showProgressDialog(resources.getString(R.string.please_wait))
 
-                        FirestoreClass().deleteAddress(
-                            this@AddressListActivity,
-                            addressList[viewHolder.adapterPosition].id
+                        FirestoreClass().deleteProduct(
+                            this@ProductListActivity,
+                            addressList[viewHolder.adapterPosition].title
                         )
                     }
                 }
@@ -175,7 +171,7 @@ class AddressListActivity : BaseActivity() {
         dismissDialog()
 
         Toast.makeText(
-            this@AddressListActivity,
+            this@ProductListActivity,
             resources.getString(R.string.err_your_address_deleted_successfully),
             Toast.LENGTH_SHORT
         ).show()

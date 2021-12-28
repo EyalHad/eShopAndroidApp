@@ -45,12 +45,16 @@ class ClientShoppingActivity : BaseActivity() {
         //what to do on each item in the menu
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_home -> Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
+
                 R.id.nav_my_orders -> Toast.makeText(this, "My Orders Clicked!", Toast.LENGTH_SHORT)
                     .show()
                 R.id.nav_settings -> {
                     Toast.makeText(this, "Settings Clicked!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, SettingsActivity::class.java))
+                }
+                R.id.nav_home -> {
+                    Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, ProductListActivity::class.java))
                 }
 
                 R.id.nav_login -> {
