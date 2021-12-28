@@ -4,20 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.projectapp.R
 import com.example.projectapp.databinding.FragmentNotificationsBinding
-import com.example.projectapp.ui.activities.AddAdminActivity
-import com.example.projectapp.ui.activities.AddProductActivity
+import com.example.projectapp.ui.activities.AdminRegistrationActivity
 import com.example.projectapp.ui.activities.SettingsActivity
 import com.example.projectapp.ui.view_models.NotificationsViewModel
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
 
 
 class NotificationsFragment : Fragment() {
@@ -67,7 +61,7 @@ class NotificationsFragment : Fragment() {
         val id = item.itemId //the id of the pressed item
         when (id) {
             R.id.nav_add_admin -> {
-                startActivity(Intent(activity, AddAdminActivity::class.java))
+                startActivity(Intent(activity, AdminRegistrationActivity::class.java))
                 return true
             }
             R.id.nav_client_board ->{

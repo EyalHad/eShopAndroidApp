@@ -42,7 +42,7 @@ class SignUpActivity : BaseActivity() {
         }
 
         // START
-        tv_login.setOnClickListener{
+        tv_login.setOnClickListener {
             // Here when the user click on login text we can either call the login activity or call the onBackPressed function.
             // We will call the onBackPressed function.
             onBackPressed()
@@ -172,15 +172,15 @@ class SignUpActivity : BaseActivity() {
 
     private fun CreateCart(email: String) {
         val db = FirebaseFirestore.getInstance()
-        val add = HashMap<String,Any>()
+        val add = HashMap<String, Any>()
         add["firstName"] = "your first name"
         db.collection(email)
             .add(add)
             .addOnSuccessListener {
-                Toast.makeText(this,"Data added ",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Data added ", Toast.LENGTH_LONG).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this," Data not added ",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, " Data not added ", Toast.LENGTH_LONG).show()
             }
 
     }

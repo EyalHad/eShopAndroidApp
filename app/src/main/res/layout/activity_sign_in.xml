@@ -127,6 +127,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_forgot_password" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -141,20 +142,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/clickable_text_view_padding"
-            android:text="Dont have an account ?"
+            android:text="Don't have an account yet?"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/lbl_text_view_textSize" />
 
-        <com.example.projectapp.utils.MSPTextViewBold
-            android:id="@+id/tv_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="@dimen/clickable_text_view_padding"
-            android:text="Register"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="@dimen/lbl_text_view_textSize" />
     </LinearLayout>
+
+    <com.example.projectapp.utils.MSPTextViewBold
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/clickable_text_view_padding"
+        android:text="Register"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/lbl_text_view_textSize"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="165dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

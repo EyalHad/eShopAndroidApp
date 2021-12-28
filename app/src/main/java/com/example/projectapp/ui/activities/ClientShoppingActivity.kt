@@ -75,12 +75,9 @@ class ClientShoppingActivity : BaseActivity() {
                     if (userType == 1) {
                         startActivity(Intent(this, DashboardActivity::class.java))
                     } else {
-                        showErrorSnackBar("This is Admin Area - You are NOT One ", true)
+                        showErrorSnackBar("You don't have access!", true)
                     }
-
                 }
-
-
             }
             true
         }
