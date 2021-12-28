@@ -4,23 +4,32 @@ package com.example.projectapp.ui.activities
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.projectapp.R
+import com.example.projectapp.R.id.iv_add_update_product
 import com.example.projectapp.firestore.FirestoreClass
 import com.example.projectapp.models.Product
 import com.example.projectapp.utils.Constants
 import com.example.projectapp.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_product_add.*
 import java.io.IOException
+import java.util.jar.Manifest
 
 
 class AddProductActivity : BaseActivity(), View.OnClickListener {
+
+    companion object{
+        private const val CAMERA_PERMISSION_CODE = 0
+        private const val CAMERA = 2
+    }
 
     // A global variable for URI of a selected image from phone storage.
     private var imageFileUri: Uri? = null
@@ -33,6 +42,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_product_add)
         setupActionBar()
         iv_add_update_product.setOnClickListener(this)
+        iv_camera.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
     }
 
@@ -66,6 +76,17 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
 
+                R.id.iv_camera -> {
+                    //if permissions for camera was granted by the user
+                    if(ContextCompat.checkSelfPermission (this, android.Manifest.permission.CAMERA )
+                    == PackageManager.PERMISSION_GRANTED){
+                        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE) //this will start the camera
+                        startActivityForResult(intent, CAMERA)
+                    }else{
+                        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+                    }
+                }
+
                 R.id.btn_submit -> {
                     if (validateProductDetails()) {
                         showProgressDialog(R.string.wait.toString())
@@ -81,6 +102,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
+
+
 
     /**
      * This function will identify the result of runtime permission
@@ -111,13 +134,30 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 ).show()
             }
         }
+        if(requestCode == CAMERA_PERMISSION_CODE){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startActivityForResult(intent, CAMERA)
+            }else{
+                // Display Toast when Permission is not granted
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.read_storage_permission_denied),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
+            if(requestCode == CAMERA_PERMISSION_CODE){
+                val thumbnail : Bitmap = data!!.extras!!.get("data") as Bitmap
+                iv_product_image.setImageBitmap(thumbnail)
+                
+            }
+            else if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
                 if (data != null) {
                     iv_add_update_product.setImageDrawable(
                         ContextCompat.getDrawable(
@@ -142,7 +182,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
             }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
+        }
+        else if (resultCode == Activity.RESULT_CANCELED) {
 
         }
     }

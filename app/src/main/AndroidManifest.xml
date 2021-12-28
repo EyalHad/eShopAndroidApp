@@ -3,6 +3,9 @@
     package="com.example.projectapp">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectApp">
-        <activity
-            android:name=".ui.activities.AddAdminActivity"
-            android:exported="false" />
         <activity
             android:name=".ui.activities.AdminRegistrationActivity"
             android:exported="false" />
@@ -87,5 +87,6 @@
             android:name=".ui.activities.SignInActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
+
 
 </manifest>
