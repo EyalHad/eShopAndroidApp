@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.item_product_layout.view.*
 /**
  * An adapter class for AddressList adapter.
  */
-open class ProductsListAdapter(
+open class CartListAdapter(
     private val context: Context,
     private var list: ArrayList<Product>,
     private val selectAddress: Boolean
@@ -43,7 +43,7 @@ open class ProductsListAdapter(
 
         return MyViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.item_product_layout,
+                R.layout.item_cart_layout,
                 parent,
                 false
             )
@@ -66,22 +66,19 @@ open class ProductsListAdapter(
 
         if (holder is MyViewHolder) {
             holder.itemView.tv_address_full_name.text = model.title
-            holder.itemView.tv_address_type.text = model.price
+            holder.itemView.tv_address_type.text =" amount : "+ model.stock_quantity
             holder.itemView.tv_address_details.text =
                model.description
-            holder.itemView.tv_address_mobile_number.text = model.stock_quantity
-            holder.itemView.tv_address_mobile_number.text = model.stock_quantity
-            holder.itemView.btn_buy.setOnClickListener {
+            holder.itemView.tv_address_mobile_number.text = "price : "+model.price
 
-                add_to_cart(model,1)
-            }
+//            holder.itemView.btn_buy.setOnClickListener {
+//
+//                add_to_cart(model,1)
+//            }
             //for now dont suppport null image field
-            if(model.image=="") {
-
-                Glide.with(context)
-                    .load(model.image)
-                    .into(holder.itemView.image_product)
-            }
+            Glide.with(context)
+                .load(model.image)
+                .into(holder.itemView.image_product)
 
             if (selectAddress) {
                 holder.itemView.setOnClickListener {
@@ -98,7 +95,7 @@ open class ProductsListAdapter(
         val add = HashMap<String,Any>()
         add["title"] = p.title
         add["price"] = p.price
-        add["stock_quantity"]  = p.stock_quantity
+        add["stock_quantity"]  =amount_to_buy
         add["image"] = p.image
         add["description"]=p.description
         db.collection(a.toString())

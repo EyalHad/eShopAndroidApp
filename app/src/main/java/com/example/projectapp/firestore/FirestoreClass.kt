@@ -1,9 +1,6 @@
 package com.example.projectapp.firestore
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
 import com.example.projectapp.models.Address
@@ -17,7 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.*
 
 class FirestoreClass {
 
@@ -456,4 +452,57 @@ class FirestoreClass {
                 )
             }
     }
+
+
+
+    fun getCartList(activity:CartListActivity,email: String) {
+        // The collection name for PRODUCTS
+        fireStore.collection(email)
+
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                // Here we get the list of boards in the form of documents.
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+                // Here we have created a new instance for address ArrayList.
+                val addressList: ArrayList<Product> = ArrayList()
+
+                // A for loop as per the list of documents to convert them into Boards ArrayList.
+                for (i in document.documents) {
+
+                    val product = i.toObject(Product::class.java)!!
+
+
+                    addressList.add(product)
+                }
+
+                activity.successAddressListFromFirestore(addressList  )
+            }
+            .addOnFailureListener { e ->
+                // Here call a function of base activity for transferring the result to it.
+
+                activity.dismissDialog()
+
+                Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
+            }
+    }
+    fun deleteProduct(activity: CartListActivity, addressId: String) {
+
+        fireStore.collection(Constants.ADDRESSES)
+            .document(addressId)
+            .delete()
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.deleteAddressSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.dismissDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while deleting the address.",
+                    e
+                )
+            }
+    }
+
 }

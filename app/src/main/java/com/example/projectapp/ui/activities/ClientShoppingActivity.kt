@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.projectapp.R
 import com.example.projectapp.firestore.FirestoreClass
+import com.example.projectapp.models.User
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -24,6 +25,7 @@ class ClientShoppingActivity : BaseActivity() {
     private lateinit var toggle: ActionBarDrawerToggle //menu map toggle
     private var userType: Int = 0
     private lateinit var auth : FirebaseAuth
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +58,10 @@ class ClientShoppingActivity : BaseActivity() {
                     Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, ProductListActivity::class.java))
                 }
+                R.id.nav_my_cart -> {
+                    Toast.makeText(this, "Home Clicked!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, CartListActivity::class.java))
+                }
 
                 R.id.nav_login -> {
                     FirebaseAuth.getInstance().signOut()
@@ -63,7 +69,10 @@ class ClientShoppingActivity : BaseActivity() {
                 }
 
                 R.id.nav_admin -> {
-                    if (userType == 0) {
+                    Log.e(
+                        this.javaClass.simpleName,
+                        "User type is $userType",)
+                    if (userType == 1) {
                         startActivity(Intent(this, DashboardActivity::class.java))
                     } else {
                         showErrorSnackBar("This is Admin Area - You are NOT One ", true)
