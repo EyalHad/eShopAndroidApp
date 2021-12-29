@@ -83,7 +83,9 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE) //this will start the camera
                         startActivityForResult(intent, CAMERA)
                     }else{
-                        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+                        ActivityCompat.requestPermissions(this,
+                            arrayOf(android.Manifest.permission.CAMERA),
+                            CAMERA_PERMISSION_CODE)
                     }
                 }
 
