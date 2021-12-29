@@ -17,6 +17,8 @@ import com.example.projectapp.ui.activities.AddProductActivity
 import com.example.projectapp.ui.view_models.ProductsViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.bumptech.glide.Glide
+import com.example.projectapp.ui.activities.AdminRegistrationActivity
+import com.example.projectapp.ui.activities.ClientShoppingActivity
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 
@@ -57,6 +59,7 @@ class ProductsFragment : Fragment() {
      */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_product_menu, menu)
+        inflater.inflate(R.menu.menu_admin, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -69,6 +72,13 @@ class ProductsFragment : Fragment() {
             R.id.action_add_product -> {
                 startActivity(Intent(activity, AddProductActivity::class.java))
                 return true
+            }
+            R.id.nav_add_admin -> {
+                startActivity(Intent(activity, AdminRegistrationActivity::class.java))
+                return true
+            }
+            R.id.nav_client_board ->{
+                startActivity(Intent(activity, ClientShoppingActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)

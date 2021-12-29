@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.projectapp.R
 import com.example.projectapp.databinding.FragmentNotificationsBinding
 import com.example.projectapp.ui.activities.AdminRegistrationActivity
+import com.example.projectapp.ui.activities.ClientShoppingActivity
 import com.example.projectapp.ui.activities.SettingsActivity
 import com.example.projectapp.ui.view_models.NotificationsViewModel
 
@@ -65,7 +66,7 @@ class NotificationsFragment : Fragment() {
                 return true
             }
             R.id.nav_client_board ->{
-                startActivity(Intent(activity, SettingsActivity::class.java))
+                startActivity(Intent(activity, ClientShoppingActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)

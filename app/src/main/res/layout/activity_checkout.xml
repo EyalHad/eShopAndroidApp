@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.projectapp.ui.activities.MainActivity"
+    tools:context="com.example.projectapp.ui.activities.CheckOutActivity"
     android:id="@+id/main">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="121dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/intro_main_text"
+        android:text="Submit your checkout!"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

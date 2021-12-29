@@ -3,6 +3,7 @@ package com.example.projectapp.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.example.projectapp.R
 
 class CheckOutActivity : BaseActivity() {
@@ -18,6 +19,8 @@ class CheckOutActivity : BaseActivity() {
     }
 
     private fun submit_order() {
-        TODO("Not yet implemented")
+        Toast.makeText(this, "Order processed!", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, ClientShoppingActivity::class.java))
+        finish()
     }
 }
