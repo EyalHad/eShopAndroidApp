@@ -14,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectApp">
+
+
         <activity
             android:name=".ui.activities.AdminRegistrationActivity"
             android:exported="false"

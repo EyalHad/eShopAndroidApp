@@ -1,18 +1,23 @@
 package com.example.projectapp.ui.activities
 
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.os.Environment.getExternalStoragePublicDirectory
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.example.projectapp.R
 import com.example.projectapp.R.id.iv_add_update_product
 import com.example.projectapp.firestore.FirestoreClass
@@ -20,15 +25,19 @@ import com.example.projectapp.models.Product
 import com.example.projectapp.utils.Constants
 import com.example.projectapp.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_product_add.*
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.jar.Manifest
 
 
 class AddProductActivity : BaseActivity(), View.OnClickListener {
 
-    companion object{
+    companion object {
         private const val CAMERA_PERMISSION_CODE = 0
-        private const val CAMERA = 2
+        private const val CAMERA = 0
     }
 
     // A global variable for URI of a selected image from phone storage.
@@ -78,14 +87,18 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
 
                 R.id.iv_camera -> {
                     //if permissions for camera was granted by the user
-                    if(ContextCompat.checkSelfPermission (this, android.Manifest.permission.CAMERA )
-                    == PackageManager.PERMISSION_GRANTED){
-                        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE) //this will start the camera
+                    if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        val intent =
+                            Intent(MediaStore.ACTION_IMAGE_CAPTURE) //this will start the camera
                         startActivityForResult(intent, CAMERA)
-                    }else{
-                        ActivityCompat.requestPermissions(this,
+                    } else {
+                        ActivityCompat.requestPermissions(
+                            this,
                             arrayOf(android.Manifest.permission.CAMERA),
-                            CAMERA_PERMISSION_CODE)
+                            CAMERA_PERMISSION_CODE
+                        )
                     }
                 }
 
@@ -104,7 +117,6 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
-
 
 
     /**
@@ -136,10 +148,10 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 ).show()
             }
         }
-        if(requestCode == CAMERA_PERMISSION_CODE){
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startActivityForResult(intent, CAMERA)
-            }else{
+            } else {
                 // Display Toast when Permission is not granted
                 Toast.makeText(
                     this,
@@ -154,12 +166,15 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
-            if(requestCode == CAMERA_PERMISSION_CODE){
-                val thumbnail : Bitmap = data!!.extras!!.get("data") as Bitmap
+
+            if (requestCode == CAMERA_PERMISSION_CODE) {
+                val thumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
+
                 iv_product_image.setImageBitmap(thumbnail)
-                
-            }
-            else if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
+                imageFileUri = getImageUri(this,thumbnail)
+
+
+            } else if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
                 if (data != null) {
                     iv_add_update_product.setImageDrawable(
                         ContextCompat.getDrawable(
@@ -184,8 +199,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
             }
-        }
-        else if (resultCode == Activity.RESULT_CANCELED) {
+        } else if (resultCode == Activity.RESULT_CANCELED) {
 
         }
     }
@@ -231,7 +245,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun uploadProductImage(){
+    private fun uploadProductImage() {
         showProgressDialog(resources.getString(R.string.please_wait))
         FirestoreClass()
             .uploadImageToCloudStorage(
@@ -241,7 +255,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             )
     }
 
-    fun imageUploadSuccess(imageURL: String){
+    fun imageUploadSuccess(imageURL: String) {
 
         // Initialize the global image url variable
         productImageURL = imageURL
@@ -264,8 +278,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
 
     fun productUploadSuccess() {
 
-//        hideProgressDialog()
-
+        dismissDialog()
         Toast.makeText(
             this@AddProductActivity,
             resources.getString(R.string.product_uploaded_success_message),
@@ -276,6 +289,16 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            inContext.getContentResolver(),
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
 
 }
