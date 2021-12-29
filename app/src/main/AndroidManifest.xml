@@ -16,7 +16,8 @@
         android:theme="@style/Theme.ProjectApp">
         <activity
             android:name=".ui.activities.AdminRegistrationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.activities.AddressListActivity"
             android:exported="false"

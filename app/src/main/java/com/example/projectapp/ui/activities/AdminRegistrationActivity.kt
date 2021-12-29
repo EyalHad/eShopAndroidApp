@@ -46,7 +46,7 @@ class AdminRegistrationActivity : BaseActivity() {
      */
     private fun setupActionBar() {
 
-//        setSupportActionBar(toolbar_register_activity)
+        setSupportActionBar(toolbar_register_activity)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
