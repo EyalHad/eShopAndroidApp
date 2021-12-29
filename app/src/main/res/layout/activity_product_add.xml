@@ -78,7 +78,7 @@
                     android:id="@+id/iv_camera"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="start|bottom"
                     android:contentDescription="Content Description"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/add_update_product_icon_padding"
